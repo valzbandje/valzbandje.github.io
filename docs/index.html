@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VALZ – Dialectrock uit de Achterhoek</title>
+<meta name="description" content="VALZ: vijf jonge honden uit de Achterhoek met dialectrock, piratenhits, Amerikaanse (country)rock en nog meer gekkigheid. Agenda, muziek en contact.">
+<meta property="og:title" content="VALZ – Dialectrock uit de Achterhoek">
+<meta property="og:description" content="Dialectrock, piratenhits en nog meer gekkigheid. Bekijk de agenda en luister onze muziek.">
+<meta property="og:image" content="img/bandfoto.jpg">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--y:#FFED00;--k:#0E0E0E;--k2:#1A1A1A;--p:#F6F4EE;--m:#C9C6BD;--nav:64px}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 12px)}
+  html,body{overflow-x:clip}
+  body{margin:0;background:var(--k);color:var(--p);font-family:'Archivo',sans-serif;line-height:1.55}
+  img{max-width:100%;display:block}
+  a{color:var(--y)}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .anton{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.5px}
+  .kicker{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--y)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 22px;background:var(--y);color:var(--k);font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1.5px;font-size:15px;border:0;cursor:pointer;font-family:inherit;transition:transform .15s,background .15s,box-shadow .15s;box-shadow:6px 6px 0 var(--p)}
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--p)}
+  .btn:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--p)}
+  .btn.ghost{background:transparent;color:var(--y);box-shadow:inset 0 0 0 2px var(--y)}
+  .btn.ghost:hover{background:var(--y);color:var(--k)}
+  .btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* ---------- nav ---------- */
+  .nav{position:fixed;inset:0 0 auto 0;height:var(--nav);z-index:50;display:flex;align-items:center;transition:background .25s,border-color .25s;border-bottom:2px solid transparent}
+  .nav.solid{background:rgba(14,14,14,.94);backdrop-filter:blur(8px);border-color:var(--y)}
+  .nav .wrap{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .nav-logo img{height:34px;width:auto;aspect-ratio:4501/1367;flex-shrink:0}
+  .nav-links{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+  .nav-links a{display:block;padding:10px 12px;color:var(--p);text-decoration:none;font-weight:800;font-size:14px;letter-spacing:2px;text-transform:uppercase;position:relative}
+  .nav-links a::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:12px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%2012%27%20preserveAspectRatio%3D%27none%27%3E%3Cpolyline%20points%3D%270%2C10%2034%2C5%2030%2C9%2064%2C3%2060%2C7%20100%2C1%27%20fill%3D%27none%27%20stroke%3D%27%23FFED00%27%20stroke-width%3D%272.6%27%20vector-effect%3D%27non-scaling-stroke%27%20stroke-linejoin%3D%27miter%27%20stroke-linecap%3D%27square%27/%3E%3C/svg%3E") center/100% 12px no-repeat;clip-path:inset(0 100% 0 0);transform:scaleY(.4);transform-origin:center;transition:clip-path .38s cubic-bezier(.65,0,.35,1),transform .38s cubic-bezier(.34,1.8,.64,1)}
+  .nav-links a:hover::after,.nav-links a.on::after,.nav-links a:focus-visible::after{clip-path:inset(0 0 0 0);transform:scaleY(1)}
+  .nav-links a{transition:transform .28s cubic-bezier(.34,1.56,.64,1),color .2s}
+  .nav-links a:hover,.nav-links a:focus-visible{transform:translateY(-3px) scale(1.08);color:var(--y)}
+  .nav-links a:active{transform:translateY(0) scale(.96)}
+  .nav-links a.pop{color:var(--y);transform:translateY(-3px) scale(1.12)}
+  .nav-links a.pop::after{clip-path:inset(0 0 0 0);transform:scaleY(1)}
+  @media (prefers-reduced-motion: reduce){main,footer,.menu-btn,.menu-btn svg,.nav-links,.nav-links li,.nav-links a,.nav-links a::after{transition:none!important}.nav-links a:hover{transform:none}}
+  .bolt-bg{display:none}
+  .menu-btn{display:none;background:none;border:2px solid var(--y);color:var(--y);min-width:48px;min-height:44px;cursor:pointer;font-family:inherit;font-weight:800;letter-spacing:2px;padding:0 10px}
+  main,footer{transition:filter .4s ease,opacity .4s ease}
+  body.menu-open main,body.menu-open footer{filter:blur(7px) brightness(.55);opacity:.9}
+  @media (max-width:820px){
+    .menu-btn{display:block}
+    .nav-links{position:fixed;top:calc(var(--nav) + 6px);left:4vw;right:4vw;height:min(600px,calc(100svh - var(--nav) - 24px));display:block;padding:0;background:none;border:0;pointer-events:none;opacity:0;visibility:hidden;transform-origin:85% 0;transform:scale(.6) rotate(-6deg);transition:opacity .3s ease,transform .5s cubic-bezier(.34,1.45,.64,1),visibility 0s linear .5s}
+    .nav-links.open{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .25s ease,transform .55s cubic-bezier(.34,1.45,.64,1),visibility 0s}
+    .bolt-bg{display:block;position:absolute;inset:0;z-index:0;filter:drop-shadow(8px 10px 0 rgba(255,237,0,.25))}
+    .bolt-bg svg{width:100%;height:100%;display:block;overflow:visible}
+    .bolt-bg polygon{fill:rgba(14,14,14,.97);stroke:var(--y);stroke-width:3;vector-effect:non-scaling-stroke;stroke-linejoin:miter}
+    .nav-links li:not(.bolt-bg){position:absolute;z-index:1;opacity:0;transform:translateY(10px);transition:opacity .3s ease,transform .45s cubic-bezier(.22,1,.36,1)}
+    .nav-links li:nth-child(2){top:3%;left:46.5%}
+    .nav-links li:nth-child(3){top:12%;left:40.5%}
+    .nav-links li:nth-child(4){top:21%;left:34.5%}
+    .nav-links li:nth-child(5){top:30%;left:28.5%}
+    .nav-links li:nth-child(6){top:39.5%;left:22.5%}
+    .nav-links li:nth-child(7){top:48.5%;left:16.5%}
+    .nav-links.open li:not(.bolt-bg){opacity:1;transform:none}
+    .nav-links.open li:nth-child(2){transition-delay:.12s}.nav-links.open li:nth-child(3){transition-delay:.17s}.nav-links.open li:nth-child(4){transition-delay:.22s}
+    .nav-links.open li:nth-child(5){transition-delay:.27s}.nav-links.open li:nth-child(6){transition-delay:.32s}.nav-links.open li:nth-child(7){transition-delay:.37s}
+    .nav-links a{display:inline-block;font-size:clamp(18px,5.4vw,24px);padding:10px 8px}
+    .nav-links a::after{left:8px;right:8px;bottom:2px}
+  }
+
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+  .hero-bg{position:absolute;inset:-6% -6% -6% -6%;background:url(img/bandfoto.jpg) center 35%/cover no-repeat;z-index:-2;will-change:transform}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,14,14,.35) 0%,rgba(14,14,14,.1) 35%,rgba(14,14,14,.85) 78%,var(--k) 100%)}
+  .hero .wrap{width:100%;padding-top:calc(var(--nav) + 40px);padding-bottom:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:end}
+  .hero-logo{width:min(560px,100%);height:auto;aspect-ratio:4501/1367;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))}
+  .hero h1{margin:18px 0 22px;font-size:clamp(22px,3.2vw,34px);line-height:1.1;text-shadow:0 2px 16px rgba(0,0,0,.7)}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:16px}
+  .next{background:var(--y);color:var(--k);padding:20px 22px;box-shadow:10px 10px 0 var(--k);border:3px solid var(--k);transform:rotate(1.5deg)}
+  .next .lbl{font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
+  .next .what{font-family:'Anton',sans-serif;font-size:clamp(26px,3vw,36px);line-height:1.05;text-transform:uppercase;margin:6px 0 4px}
+  .next .where{font-weight:600}
+  .cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+  .cd div{background:var(--k);color:var(--y);text-align:center;padding:8px 4px}
+  .cd b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
+  .cd span{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--p)}
+  @media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.next{transform:none;margin-top:8px}}
+
+  /* ---------- marquee ---------- */
+  .mq{overflow:hidden;padding:14px 0;margin:-14px 0}
+  .marquee{background:var(--y);color:var(--k);overflow:hidden;border-block:3px solid var(--k);transform:rotate(-1.2deg);margin:10px -10px;position:relative;z-index:2}
+  .marquee-track{display:flex;width:max-content;animation:scroll 28s linear infinite}
+  .marquee span{font-family:'Anton',sans-serif;font-size:clamp(22px,3vw,34px);text-transform:uppercase;padding:10px 0;white-space:nowrap;display:flex;align-items:center}
+  .marquee svg{width:22px;height:34px;margin:0 22px;flex-shrink:0}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  section{padding:96px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+  .sec-head h2{margin:6px 0 0;font-size:clamp(44px,7vw,88px);line-height:.95}
+  .sec-head h2 .y{color:var(--y)}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* over */
+  .over-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:48px;align-items:start}
+  .over-short{font-size:clamp(20px,2.2vw,26px);font-weight:600;line-height:1.4;border-left:0;margin:0 0 28px}
+  .over-short mark{background:var(--y);color:var(--k);padding:0 4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .over-long p{margin:0 0 16px;color:var(--m);font-size:17px}
+  .over-photo{position:relative}
+  .over-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border:3px solid var(--y)}
+  .over-photo .sticker{position:absolute;right:-14px;bottom:24px;background:var(--y);color:var(--k);font-family:'Anton',sans-serif;font-size:22px;text-transform:uppercase;padding:10px 16px;transform:rotate(-6deg);box-shadow:5px 5px 0 var(--k)}
+  @media (max-width:820px){.over-grid{grid-template-columns:1fr}.over-photo{max-width:420px}}
+
+  .over-grid.solo{grid-template-columns:1fr;max-width:860px}
+  /* bezetting */
+  .band{background:var(--p);color:var(--k)}
+  .band .kicker{color:var(--k)}
+  .members{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;perspective:900px}
+  .member{background:var(--k);color:var(--p);padding:22px 18px 20px;min-height:250px;display:flex;flex-direction:column;justify-content:space-between;transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .2s;box-shadow:8px 8px 0 var(--y);position:relative;overflow:hidden}
+  .member::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,237,0,.22),transparent 55%);opacity:0;transition:opacity .2s}
+  .member:hover::before{opacity:1}
+  .member .num{font-family:'Anton',sans-serif;font-size:56px;line-height:1;color:var(--y);opacity:.95}
+  .member h3{margin:0 0 6px;font-family:'Anton',sans-serif;font-weight:400;font-size:34px;text-transform:uppercase;line-height:1}
+  .member p{margin:0;color:var(--m);font-size:15px}
+  
+  .member .face{display:block;width:auto;height:190px;max-width:92%;object-fit:contain;margin:-4px auto 10px;filter:drop-shadow(4px 5px 0 rgba(255,237,0,.9));transform:translateZ(40px);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+  .member:hover .face,.member:focus-visible .face{transform:translateZ(60px) translateY(-6px) rotate(-3deg) scale(1.06)}
+  .member.has-face{justify-content:flex-start}
+  .member .icons{display:flex;gap:14px;margin-top:auto;padding-top:16px}
+  .member .icons .ico{width:44px;height:44px;color:var(--y);fill:currentColor;flex-shrink:0}
+  @media (max-width:1000px){.members{grid-template-columns:repeat(2,1fr)}.member:last-child{grid-column:1/-1}}
+  @media (max-width:520px){.members{grid-template-columns:1fr}}
+
+  /* muziek */
+  .music-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+  .tracks{display:flex;flex-direction:column;gap:18px}
+  .track{display:block;background:var(--k2);border:3px solid var(--y);padding:14px 14px 10px;text-decoration:none;color:var(--p)}
+  .track iframe{display:block;width:100%;height:152px;border:0;border-radius:12px}
+  .track-lbl{display:block;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--y);margin:0 0 10px 4px}
+  .track-fallback{display:grid;grid-template-columns:1fr auto;align-items:center;padding:18px 20px;transition:transform .2s,box-shadow .2s}
+  .track-fallback:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--y)}
+  .track-fallback .track-lbl{grid-column:1/-1;margin-left:0}
+  .track-title{font-size:clamp(24px,3vw,34px);line-height:1.1}
+  .track-play{width:52px;height:52px;border-radius:50%;background:var(--y);color:var(--k);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .music-side p{color:var(--m);font-size:17px;margin:0 0 24px}
+  .music-side .big{font-family:'Anton',sans-serif;font-size:clamp(34px,4vw,52px);line-height:1;text-transform:uppercase;color:var(--p);margin:0 0 16px}
+  .eq{display:flex;gap:6px;align-items:flex-end;height:60px;margin:8px 0 28px}
+  .eq i{display:block;width:12px;background:var(--y);animation:eq 1s ease-in-out infinite alternate}
+  .eq i:nth-child(2){animation-delay:-.3s}.eq i:nth-child(3){animation-delay:-.6s}.eq i:nth-child(4){animation-delay:-.15s}.eq i:nth-child(5){animation-delay:-.45s}.eq i:nth-child(6){animation-delay:-.8s}
+  @keyframes eq{from{height:12%}to{height:100%}}
+  @media (max-width:820px){.music-grid{grid-template-columns:1fr}}
+
+  /* agenda */
+  .agenda{background:var(--k2)}
+  .filters{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:transparent;color:var(--p);border:2px solid var(--p);padding:8px 16px;min-height:44px;font-family:inherit;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-size:13px;cursor:pointer}
+  .chip[aria-pressed="true"]{background:var(--y);border-color:var(--y);color:var(--k)}
+  .gigs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+  .gig{display:grid;grid-template-columns:96px 1fr auto;gap:22px;align-items:center;background:var(--k);border:2px solid #2c2c2c;padding:14px 18px 14px 14px;transition:border-color .2s,transform .2s}
+  .gig:hover{border-color:var(--y);transform:translateX(6px)}
+  .gig.first{border-color:var(--y);box-shadow:8px 8px 0 var(--y)}
+  .date{background:var(--y);color:var(--k);text-align:center;padding:8px 4px;line-height:1}
+  .date .d{display:block;font-family:'Anton',sans-serif;font-size:40px}
+  .date .m{display:block;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+  .gig h3{margin:0;font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(22px,2.4vw,28px);text-transform:uppercase;line-height:1.1}
+  .gig .meta{margin:4px 0 0;color:var(--m);font-size:15px}
+  .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;margin-left:8px;vertical-align:middle;border:2px solid var(--m);color:var(--m)}
+  .tag.y{border-color:var(--y);color:var(--y)}
+  .ics{background:none;border:2px solid var(--y);color:var(--y);font-family:inherit;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:10px 12px;min-height:44px;cursor:pointer;white-space:nowrap}
+  .ics:hover{background:var(--y);color:var(--k)}
+  .year{font-family:'Anton',sans-serif;font-size:28px;color:var(--y);margin:24px 0 4px;list-style:none}
+  .agenda-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;border:3px dashed var(--y);padding:22px 24px}
+  .agenda-cta p{margin:0;font-size:19px;font-weight:600}
+  @media (max-width:640px){.gig{grid-template-columns:72px 1fr;gap:14px}.gig .ics{grid-column:1/-1}.date .d{font-size:32px}}
+
+  /* fotos */
+  .strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px max(24px,calc((100vw - 1160px) / 2 + 24px)) 20px;scroll-padding-left:max(24px,calc((100vw - 1160px) / 2 + 24px));cursor:grab;scrollbar-color:var(--y) var(--k2)}
+  .strip.drag{cursor:grabbing;scroll-snap-type:none}
+  .strip button{flex:0 0 auto;padding:0;border:0;background:none;cursor:pointer;scroll-snap-align:start;position:relative}
+  .strip img{height:min(420px,60vw);width:auto;border:3px solid transparent;transition:border-color .2s,transform .25s;user-select:none;-webkit-user-drag:none}
+  .strip button:hover img{border-color:var(--y);transform:rotate(-1deg) scale(1.02)}
+  dialog.lb{border:3px solid var(--y);padding:0;background:var(--k);max-width:min(92vw,1100px);max-height:90vh}
+  dialog.lb::backdrop{background:rgba(0,0,0,.88)}
+  dialog.lb img{max-height:84vh;width:auto;margin:auto}
+  dialog.lb form{position:absolute;top:8px;right:8px}
+  dialog.lb button{background:var(--y);color:var(--k);border:0;font-family:inherit;font-weight:800;min-width:44px;min-height:44px;cursor:pointer;font-size:18px}
+
+  /* foto-band */
+  .photo-run{overflow:hidden;padding:72px 0 24px;position:relative}
+  .photo-run::before,.photo-run::after{content:"";position:absolute;top:0;bottom:0;width:12vw;z-index:1;pointer-events:none}
+  .photo-run::before{left:0;background:linear-gradient(90deg,var(--k),transparent)}
+  .photo-run::after{right:0;background:linear-gradient(270deg,var(--k),transparent)}
+  .photo-track{display:flex;gap:20px;width:max-content;animation:photos 42s linear infinite}
+  .photo-track img{height:clamp(200px,32vw,380px);width:auto;opacity:.6;filter:saturate(.9);flex-shrink:0}
+  @keyframes photos{to{transform:translateX(calc(-50% - 10px))}}
+  @media (prefers-reduced-motion: reduce){.photo-track{animation:none}}
+  /* persmap card */
+  .press{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;background:var(--y);color:var(--k);padding:36px 40px;box-shadow:12px 12px 0 var(--p)}
+  .press h2{margin:0;font-size:clamp(34px,5vw,60px);line-height:1}
+  .press p{margin:8px 0 0;font-size:18px;font-weight:600;max-width:640px}
+  .press .btn{background:var(--k);color:var(--y);box-shadow:6px 6px 0 var(--p)}
+  @media (max-width:720px){.press{grid-template-columns:1fr;padding:28px}}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .mail-big{font-family:'Anton',sans-serif;font-size:clamp(26px,3.6vw,46px);color:var(--y);text-decoration:none;overflow-wrap:anywhere;line-height:1.05;display:inline-block;background:linear-gradient(var(--y),var(--y)) left bottom/0 4px no-repeat;transition:background-size .3s}
+  .mail-big:hover{background-size:100% 4px}
+  .copy{margin-top:18px}
+  .form{display:flex;flex-direction:column;gap:14px;background:var(--k2);padding:28px;border:2px solid #2c2c2c}
+  .form label{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;gap:6px}
+  .form input,.form textarea{background:var(--k);border:2px solid #444;color:var(--p);font-family:inherit;font-size:16px;padding:12px;min-height:48px}
+  .form input:focus,.form textarea:focus{border-color:var(--y);outline:none}
+  .form textarea{min-height:140px;resize:vertical}
+  .form small{color:var(--m)}
+  @media (max-width:820px){.contact-grid{grid-template-columns:1fr}}
+
+  /* footer */
+  footer{border-top:3px solid var(--y);padding:40px 0 56px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+  footer img{height:42px;width:auto}
+  .socials{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin:0;padding:0}
+  .socials a,.socials span{display:inline-flex;align-items:center;min-height:44px;padding:8px 14px;border:2px solid var(--p);color:var(--p);text-decoration:none;font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase}
+  .socials a:hover{border-color:var(--y);color:var(--y)}
+  footer small{color:var(--m);display:block;width:100%}
+
+  /* cursor-vonken */
+  .spark{position:fixed;width:6px;height:6px;background:var(--y);pointer-events:none;z-index:9999;border-radius:1px}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .marquee-track,.eq i{animation:none}
+    .reveal{opacity:1;transform:none;transition:none}
+    .member,.gig,.btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<a class="sr" href="#main">Naar de inhoud</a>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="#top" aria-label="VALZ – naar boven"><img src="img/logo.png" alt="VALZ" width="112" height="34"></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">MENU</button>
+    <ul class="nav-links" id="navLinks">
+      <li class="bolt-bg" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="46,0 92,0 62,38 88,38 30,100 44,58 8,58"/></svg></li>
+      <li><a href="#over">Over</a></li>
+      <li><a href="#band">Band</a></li>
+      <li><a href="#muziek">Muziek</a></li>
+      <li><a href="#agenda">Agenda</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-bg" id="heroBg" role="img" aria-label="De vijf bandleden van VALZ liggen in oranje werkkleding op een houten bed vol stro in een weiland"></div>
+  <div class="wrap">
+    <div>
+      <img class="hero-logo" id="heroLogo" src="img/logo.png" alt="VALZ" width="560" height="170">
+      <h1 class="anton">Dialectrock uit de Achterhoek</h1>
+      <div class="hero-ctas">
+        <a class="btn" href="#muziek">Luister</a>
+        <a class="btn ghost" href="#agenda">Agenda</a>
+      </div>
+    </div>
+    <aside class="next" id="next" aria-live="polite">
+      <div class="lbl">Eerstvolgende optreden</div>
+      <div class="what" id="nextWhat">&nbsp;</div>
+      <div class="where" id="nextWhere">&nbsp;</div>
+      <div class="cd" id="cd" aria-hidden="true">
+        <div><b id="cdD">0</b><span>dagen</span></div>
+        <div><b id="cdH">0</b><span>uur</span></div>
+        <div><b id="cdM">0</b><span>min</span></div>
+        <div><b id="cdS">0</b><span>sec</span></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="mq" aria-hidden="true"><div class="marquee">
+  <div class="marquee-track" id="marquee"></div>
+</div></div>
+
+<!-- OVER -->
+<section id="over">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Wie zijn wij</span><h2 class="anton">Over <span class="y">VALZ</span></h2></div>
+    </div>
+    <div class="over-grid solo">
+
+      <div class="reveal">
+        <p class="over-short">VALZ is een dialectrockband bestaande uit <mark>vijf jonge honden uit de Achterhoek</mark>, die schik hebben met mekaar en fijne plaatjes ten gehore brengen. Met fijne plaatjes bedoelen we: dialectrock (eigen werk en covers), hier en daar wat piratenhits, wat Amerikaanse (country)rock en nog meer gekkigheid!</p>
+        <div class="over-long">
+          <p>VALZ is een stel jonge honden uit de Achterhoek dat vooral schik heeft met mekaar. En omdat gedeelde schik dubbele schik is, nemen ze die gewoon mee het podium op. Daar brengen ze fijne plaatjes ten gehore. Met fijne plaatjes bedoelen we: dialectrock (eigen werk en covers), hier en daar wat piratenhits, wat Amerikaanse (country)rock en nog meer gekkigheid.</p>
+          <p>De jongens zijn dit jaar allemaal volwassen geworden (volgens de wet dan tenminste). Ze kennen mekaar als vrienden van school. En doordat ze ooit ineens instrumenten in de klauwen kregen gedrukt, begonnen ze met muziek maken. En dat ging eigenlijk best wel mooi. Van kleine optredentjes hier en daar naar steeds grotere podia. En nu hebben ze sinds dit jaar zelfs eigen muziek uitgebracht!</p>
+          <p>Onze frontman Eijse rijdt daarom tegenwoordig ook in een Cadillac. Vooral om de lady's gek te maken, maar ook zeker om bij elk optreden aan te komen als een man van stand. Alleen stond 'ie van de week stil met z'n roestbak bij het tankstation en moest zijn mama hem ophalen. Wat 'n lieve moeder het ie toch, onnie?</p>
+          <p>Wat VALZ anders maakt dan de gemiddelde (dialect)rockband? VALZ is ontstaan uit een echte vriendengroep en dat merk je nog steeds op het podium. D'r kwam ook nog 'n keer een toetsenist aanwaaien. Den kearl zit er nu ook al weer bijna drie jaar bij. Naast z'n toetsenapparaat trekt Milan ook de hele dagen met zo'n trekzak. Ook wel pensorgel genoemd.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAND -->
+<section id="band" class="band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Bezetting</span><h2 class="anton">De jonge honden in kwestie</h2></div>
+    </div>
+    <div class="members">
+      <article class="member reveal" tabindex="0">
+        <div><h3>Eijse</h3><p>Leadzang &amp; slaggitaar</p></div>
+        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Zang"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M9 5a3 3 0 0 1 3-3a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3a3 3 0 0 1-3-3z"/><path d="M5 10a7 7 0 0 0 14 0M8 21h8m-4-4v4"/></g></g></svg></div>
+      </article>
+      <article class="member reveal" tabindex="0">
+        <div><h3>Bram</h3><p>Leadgitaar &amp; backing vocals</p></div>
+        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Elektrische gitaar"><path fill="currentColor" d="M23.58 1.18a1.41 1.41 0 0 0-1.46-.34l-4.54 1.51a1.45 1.45 0 0 0-.59.37l-.19.18a1.52 1.52 0 0 0-.44 1.1a1.6 1.6 0 0 0 .15.64l-4.24 4.21a1.36 1.36 0 0 1-.85-.56a1.78 1.78 0 0 1 0-1.43a1.49 1.49 0 0 0-.65-1.72a1.86 1.86 0 0 0-2.31.47a5.86 5.86 0 0 0-1.79 3.64a.5.5 0 0 1-.46.45a6.5 6.5 0 0 0-5.87 3.93c-.86 2.29-.07 4.89 2.16 7.12a7.55 7.55 0 0 0 5.22 2.49a5.3 5.3 0 0 0 1.88-.34a6.58 6.58 0 0 0 4-5.85a.49.49 0 0 1 .45-.47a5.8 5.8 0 0 0 3.64-1.78a1.87 1.87 0 0 0 .47-2.3a1.47 1.47 0 0 0-1.72-.65a1.9 1.9 0 0 1-1.44 0a1.37 1.37 0 0 1-.57-.85l4.25-4.24a1.48 1.48 0 0 0 1.7-.29l3.24-3.24a1.44 1.44 0 0 0-.04-2.05M8.3 19.2l-.36.36a1.5 1.5 0 0 1-2.12 0l-2.13-2.13a1.49 1.49 0 0 1 0-2.12l.36-.31a1.51 1.51 0 0 1 2.12 0l2.13 2.08a1.51 1.51 0 0 1 0 2.12m1.9-3a.75.75 0 0 1-1.06 0L7 14.11a.75.75 0 0 1 0-1.06a.74.74 0 0 1 1.06 0l2.13 2.12a.75.75 0 0 1 .01 1.06Z"/></svg></div>
+      </article>
+      <article class="member reveal" tabindex="0">
+        <div><h3>Milan</h3><p>Toetsen, accordeon &amp; backing vocals</p></div>
+        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Toetsen"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="1"/><path d="M6 7v6M10 7v6M14 7v6M18 7v6"/></g></svg></div>
+      </article>
+      <article class="member reveal" tabindex="0">
+        <div><h3>Jelte</h3><p>Bas &amp; een beetje geschreeuw</p></div>
+        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Basgitaar"><defs><clipPath id="bc"><polygon points="-5,-12.5 30,22.5 30,30 -5,30"/></clipPath></defs><g transform="translate(0 4.80) scale(0.8)"><g clip-path="url(#bc)"><path fill="currentColor" d="M23.58 1.18a1.41 1.41 0 0 0-1.46-.34l-4.54 1.51a1.45 1.45 0 0 0-.59.37l-.19.18a1.52 1.52 0 0 0-.44 1.1a1.6 1.6 0 0 0 .15.64l-4.24 4.21a1.36 1.36 0 0 1-.85-.56a1.78 1.78 0 0 1 0-1.43a1.49 1.49 0 0 0-.65-1.72a1.86 1.86 0 0 0-2.31.47a5.86 5.86 0 0 0-1.79 3.64a.5.5 0 0 1-.46.45a6.5 6.5 0 0 0-5.87 3.93c-.86 2.29-.07 4.89 2.16 7.12a7.55 7.55 0 0 0 5.22 2.49a5.3 5.3 0 0 0 1.88-.34a6.58 6.58 0 0 0 4-5.85a.49.49 0 0 1 .45-.47a5.8 5.8 0 0 0 3.64-1.78a1.87 1.87 0 0 0 .47-2.3a1.47 1.47 0 0 0-1.72-.65a1.9 1.9 0 0 1-1.44 0a1.37 1.37 0 0 1-.57-.85l4.25-4.24a1.48 1.48 0 0 0 1.7-.29l3.24-3.24a1.44 1.44 0 0 0-.04-2.05M8.3 19.2l-.36.36a1.5 1.5 0 0 1-2.12 0l-2.13-2.13a1.49 1.49 0 0 1 0-2.12l.36-.31a1.51 1.51 0 0 1 2.12 0l2.13 2.08a1.51 1.51 0 0 1 0 2.12m1.9-3a.75.75 0 0 1-1.06 0L7 14.11a.75.75 0 0 1 0-1.06a.74.74 0 0 1 1.06 0l2.13 2.12a.75.75 0 0 1 .01 1.06Z"/></g></g><line x1="9.52" y1="14.48" x2="19.4" y2="4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><g transform="translate(19.4 4.6) rotate(-45)"><path fill="currentColor" d="M-.3-1 H3.7 Q4.7-1 4.7 0 V.2 Q4.7 1.15 3.7 1.15 L1.2 1.7 Q.2 1.9-.3 1.05 Z"/><rect x="0.35" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/><rect x="1.40" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/><rect x="2.45" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/><rect x="3.50" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/></g></svg></div>
+      </article>
+      <article class="member reveal" tabindex="0">
+        <div><h3>Jimmy</h3><p>Drums</p></div>
+        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Drums"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="11" rx="7" ry="2.5"/><path d="M5 11v5c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-5M5 13.8c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5M10 9.5 4 5.5M14 9.5l6-4"/></g></svg></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MUZIEK -->
+<section id="muziek">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Luister</span><h2 class="anton">Muziek</h2></div>
+    </div>
+    <div class="music-grid">
+      <div class="tracks reveal"><div class="track"><span class="track-lbl">Nieuwste single</span><iframe title="’S Avonds Een Vent, ’S Ochtends Absent – VALZ op Spotify" src="https://open.spotify.com/embed/track/1X3zFP3XoCAEMt2xD8ax06?utm_source=generator&amp;theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div><div class="track"><span class="track-lbl">Single · 2026</span><iframe title="Geld en Angst – VALZ op Spotify" src="https://open.spotify.com/embed/track/3xH5QC6nMLJGERiKdLSRY2?utm_source=generator&amp;theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div></div>
+      <div class="music-side reveal">
+        <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="big">Zet 'm maar hard</p>
+        <p>Onze eigen nummers: <strong>’S Avonds Een Vent, ’S Ochtends Absent</strong> en <strong>Geld en Angst</strong>. Volg ons op Spotify, dan mis je niks.</p>
+        <a class="btn" href="https://open.spotify.com/artist/2zYLGBV3nCSA6yiWZgkFmz" target="_blank" rel="noopener">Volg op Spotify</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda" class="agenda">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Kom kijken</span><h2 class="anton">Agenda</h2></div>
+      <div class="filters" role="group" aria-label="Filter optredens">
+        <button class="chip" type="button" aria-pressed="true" data-f="alle">Alle</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="open">Openbaar</button>
+      </div>
+    </div>
+    <ul class="gigs" id="gigs"></ul>
+    <p id="noGigs" hidden>Er staan op dit moment geen optredens gepland. Hou onze socials in de gaten!</p>
+    <div class="agenda-cta reveal">
+      <p>Zelf een feest, kroeg of tent die nog een band mist?</p>
+      <a class="btn" href="#contact">Boek VALZ</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOTO-BAND -->
+<div class="photo-run" role="img" aria-label="Foto's van VALZ live op het podium, die langzaam voorbij schuiven">
+  <div class="photo-track"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-tent.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-tent.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"></div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Boekingen &amp; vragen</span><h2 class="anton">Contact</h2></div>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <p style="font-size:19px;color:var(--m);margin:0 0 18px">Boeken, vragen of gewoon iets leuks kwijt?</p>
+        <a class="mail-big" href="mailto:valzbandje@gmail.com">valzbandje@gmail.com</a>
+        <div><button class="btn ghost copy" type="button" id="copyMail">Kopieer mailadres</button></div>
+        <p id="copied" aria-live="polite" style="color:var(--y);font-weight:800;min-height:1.5em"></p>
+      </div>
+      <form class="form reveal" id="mailForm">
+        <label>Je naam<input name="naam" autocomplete="name" required></label>
+        <label>Onderwerp<input name="onderwerp" placeholder="Bijv. boeking 12 juli" required></label>
+        <label>Bericht<textarea name="bericht" placeholder="Wat, waar en wanneer?" required></textarea></label>
+        <button class="btn" type="submit">Mail ons</button>
+        <small>Dit opent je eigen mailprogramma met het bericht alvast ingevuld.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo.png" alt="VALZ" width="138" height="42">
+    <ul class="socials">
+      <li><a href="https://open.spotify.com/artist/2zYLGBV3nCSA6yiWZgkFmz" target="_blank" rel="noopener">Spotify</a></li>
+      <li><span>Instagram</span></li>
+      <li><a href="https://www.tiktok.com/@valzband" target="_blank" rel="noopener">TikTok</a></li>
+      <li><a href="https://www.facebook.com/ValzBand/" target="_blank" rel="noopener">Facebook</a></li>
+      <li><a href="/persmap/">Persmap</a></li>
+    </ul>
+    <small>© <span id="yr"></span> VALZ</small>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pad = n => String(n).padStart(2, '0');
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ---------- agenda (pas hier de optredens aan) ----------
+  // datum: JJJJ-MM-DD · titel · plaats/extra · besloten: true = niet openbaar
+  const GIGS = [
+    { date: '2026-12-05', title: 'Besloten feest', place: '\'s-Heerenberg', prov: 'Gelderland', besloten: true },
+    { date: '2026-12-11', title: 'Besloten feest', place: 'Stroe', prov: 'Gelderland', besloten: true },
+    { date: '2026-12-19', title: 'Besloten feest', place: 'Drempt', prov: 'Gelderland', besloten: true },
+    { date: '2027-01-16', title: 'Besloten feest', place: 'Toldijk', prov: 'Gelderland', besloten: true },
+    { date: '2027-03-06', title: 'America', prov: 'Limburg' },
+    { date: '2027-03-20', title: 'Kunefest', place: 'Lochem', prov: 'Gelderland' },
+    { date: '2027-04-04', title: 'Graafschap kantine', place: 'Doetinchem', prov: 'Gelderland' },
+    { date: '2027-04-11', title: 'Piratencafé', place: 'Didam', prov: 'Gelderland' },
+    { date: '2027-04-17', title: 'Buurtschapshuis', place: 'Halle', prov: 'Gelderland' },
+    { date: '2027-04-26', title: 'Koningsnacht', place: 'Hummelo', prov: 'Gelderland' },
+    { date: '2027-05-16', title: 'Besloten feest', place: 'Lievelde', prov: 'Gelderland', besloten: true },
+    { date: '2027-05-22', title: 'Eventkerk', place: 'Loil', prov: 'Gelderland' },
+    { date: '2027-05-29', title: 'Besloten feest', place: 'Drempt', prov: 'Gelderland', besloten: true },
+    { date: '2027-06-26', title: 'Trekkertrek', place: 'Renswoude', prov: 'Utrecht' }
+  ];
+  const MONTHS = ['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
+  const DAYS = ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'];
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const upcoming = GIGS.map(g => ({ ...g, d: new Date(g.date + 'T00:00:00') }))
+                       .filter(g => g.d >= today).sort((a, b) => a.d - b.d);
+  const list = document.getElementById('gigs');
+  let filter = 'alle';
+
+  function ics(g) {
+    const ymd = g.date.replace(/-/g, '');
+    const end = new Date(g.d.getTime() + 86400000);
+    const e = end.getFullYear() + pad(end.getMonth() + 1) + pad(end.getDate());
+    const txt = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//VALZ//Agenda//NL','BEGIN:VEVENT',
+      'UID:' + ymd + '-' + g.title.replace(/\W+/g, '') + '@valz.nl','DTSTAMP:' + ymd + 'T000000Z',
+      'DTSTART;VALUE=DATE:' + ymd,'DTEND;VALUE=DATE:' + e,
+      'SUMMARY:VALZ – ' + g.title,'LOCATION:' + (g.place || ''),'DESCRIPTION:Live: VALZ – dialectrock uit de Achterhoek. valz.nl',
+      'END:VEVENT','END:VCALENDAR'].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([txt], { type: 'text/calendar' }));
+    a.download = 'VALZ-' + g.date + '.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  function render() {
+    list.innerHTML = '';
+    const items = upcoming.filter(g => filter === 'alle' || !g.besloten);
+    document.getElementById('noGigs').hidden = items.length > 0;
+    let lastYear = null;
+    items.forEach((g, i) => {
+      const y = g.d.getFullYear();
+      if (y !== lastYear) {
+        if (lastYear !== null) { const yl = document.createElement('li'); yl.className = 'year'; yl.textContent = y; list.appendChild(yl); }
+        lastYear = y;
+      }
+      const li = document.createElement('li');
+      const isNext = g === upcoming[0];
+      li.className = 'gig' + (isNext ? ' first' : '');
+      const metaBits = [[g.place, g.prov].filter(Boolean).join(', ')].filter(Boolean);
+      li.innerHTML =
+        '<div class="date"><span class="d">' + g.d.getDate() + '</span><span class="m">' + MONTHS[g.d.getMonth()] + '</span></div>' +
+        '<div><h3></h3><p class="meta"></p></div>';
+      li.querySelector('h3').textContent = g.title;
+      if (isNext) li.querySelector('h3').insertAdjacentHTML('beforeend', '<span class="tag y">Eerstvolgende</span>');
+      if (metaBits.length) li.querySelector('.meta').textContent = metaBits.join(' · '); else li.querySelector('.meta').remove();
+      li.setAttribute('aria-label', g.title + ', ' + DAYS[g.d.getDay()] + ' ' + g.d.getDate() + ' ' + MONTHS[g.d.getMonth()] + ' ' + y + (g.place ? ', ' + g.place : ''));
+      if (!g.besloten) {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'ics'; b.textContent = '+ In je agenda';
+        b.setAttribute('aria-label', g.title + ' toevoegen aan je agenda');
+        b.addEventListener('click', () => ics(g));
+        li.appendChild(b);
+      } else { li.appendChild(document.createElement('span')); }
+      list.appendChild(li);
+    });
+  }
+  document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    filter = c.dataset.f;
+    document.querySelectorAll('.chip').forEach(o => o.setAttribute('aria-pressed', String(o === c)));
+    render();
+  }));
+  render();
+
+  // ---------- eerstvolgende + aftellen ----------
+  const next = upcoming[0];
+  if (next) {
+    document.getElementById('nextWhat').textContent = next.title;
+    document.getElementById('nextWhere').textContent =
+      DAYS[next.d.getDay()] + ' ' + next.d.getDate() + ' ' + MONTHS[next.d.getMonth()] + (next.place ? ' · ' + next.place : (next.prov ? ' · ' + next.prov : ''));
+    const target = new Date(next.date + 'T20:00:00');
+    const tick = () => {
+      let s = Math.max(0, Math.floor((target - new Date()) / 1000));
+      document.getElementById('cdD').textContent = Math.floor(s / 86400);
+      document.getElementById('cdH').textContent = pad(Math.floor(s % 86400 / 3600));
+      document.getElementById('cdM').textContent = pad(Math.floor(s % 3600 / 60));
+      document.getElementById('cdS').textContent = pad(s % 60);
+    };
+    tick(); setInterval(tick, 1000);
+  } else {
+    document.getElementById('next').hidden = true;
+  }
+
+  // ---------- marquee ----------
+  const bolt = '<svg viewBox="0 0 48 100" aria-hidden="true"><polygon points="30,0 4,56 22,56 14,100 44,38 26,38 38,0" fill="#0E0E0E"/></svg>';
+  const words = ['VALZ', 'Dialectrock', 'Achterhoek', 'Piratenhits'];
+  const run = words.map(w => '<span>' + w + bolt + '</span>').join('').repeat(3);
+  document.getElementById('marquee').innerHTML = run + run + run + run;
+
+  // ---------- nav ----------
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('solid', window.scrollY > 40);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  const menuBtn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.textContent = open ? 'SLUIT' : 'MENU';
+    document.body.classList.toggle('menu-open', open);
+  });
+  const closeMenu = () => { links.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.textContent = 'MENU'; document.body.classList.remove('menu-open'); };
+  document.getElementById('main').addEventListener('click', e => { if (document.body.classList.contains('menu-open')) { e.preventDefault(); closeMenu(); } }, true);
+  window.addEventListener('keydown', e => { if (e.key === 'Escape' && links.classList.contains('open')) { closeMenu(); menuBtn.focus(); } });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', e => {
+    if (!links.classList.contains('open')) return;
+    // eerst het pop-effect met bliksem laten zien, dan pas sluiten en gaan
+    e.preventDefault();
+    const href = a.getAttribute('href');
+    a.classList.add('pop');
+    setTimeout(() => {
+      closeMenu(); a.classList.remove('pop');
+      if (href.startsWith('#')) { const t = document.querySelector(href); if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); history.replaceState(null, '', href); }
+      else { location.href = a.href; }
+    }, reduce ? 0 : 420);
+  }));
+  const secs = ['over', 'band', 'muziek', 'agenda', 'contact'].map(id => document.getElementById(id));
+  const navA = [...links.querySelectorAll('a[href^="#"]')];
+  const setActive = () => {
+    const line = innerHeight * 0.4;
+    let cur = null;
+    secs.forEach(sec => { const r = sec.getBoundingClientRect(); if (r.top <= line && r.bottom > line) cur = sec.id; });
+    navA.forEach(a => a.classList.toggle('on', cur !== null && a.getAttribute('href') === '#' + cur));
+  };
+  setActive(); window.addEventListener('scroll', setActive, { passive: true }); window.addEventListener('resize', setActive);
+
+  // ---------- reveal bij scrollen ----------
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- hero: parallax + bliksem op logo ----------
+  const bg = document.getElementById('heroBg'), logo = document.getElementById('heroLogo');
+  if (!reduce) {
+    window.addEventListener('scroll', () => { const y = window.scrollY; if (y < innerHeight) bg.style.transform = 'translateY(' + y * .25 + 'px) scale(1.04)'; }, { passive: true });
+  }
+
+  // ---------- bandleden: 3D-kantelen ----------
+  if (!reduce) document.querySelectorAll('.member').forEach(m => {
+    m.addEventListener('pointermove', e => {
+      const r = m.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      m.style.transform = 'rotateY(' + (x - .5) * 14 + 'deg) rotateX(' + (.5 - y) * 14 + 'deg) translateZ(0)';
+      m.style.setProperty('--mx', x * 100 + '%'); m.style.setProperty('--my', y * 100 + '%');
+    });
+    m.addEventListener('pointerleave', () => { m.style.transform = ''; });
+  });
+
+  // ---------- contact ----------
+  const MAIL = 'valzbandje@gmail.com';
+  document.getElementById('copyMail').addEventListener('click', async () => {
+    const out = document.getElementById('copied');
+    try { await navigator.clipboard.writeText(MAIL); out.textContent = 'Gekopieerd!'; }
+    catch (e) { out.textContent = MAIL; }
+    setTimeout(() => out.textContent = '', 2500);
+  });
+  document.getElementById('mailForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const body = f.get('bericht') + '\n\nGroet,\n' + f.get('naam');
+    location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent(f.get('onderwerp')) + '&body=' + encodeURIComponent(body);
+  });
+
+  // ---------- vonkjes achter de muis ----------
+  if (!reduce && matchMedia('(pointer: fine)').matches) {
+    let last = 0;
+    window.addEventListener('pointermove', e => {
+      const now = performance.now(); if (now - last < 40) return; last = now;
+      const s = document.createElement('div'); s.className = 'spark';
+      s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
+      document.body.appendChild(s);
+      const dx = (Math.random() - .5) * 40, dy = 20 + Math.random() * 30;
+      s.animate([{ transform: 'translate(0,0) rotate(0)', opacity: 1 }, { transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(180deg)', opacity: 0 }],
+        { duration: 600, easing: 'ease-out' }).onfinish = () => s.remove();
+    }, { passive: true });
+  }
+})();
+</script>
+</body>
+</html>

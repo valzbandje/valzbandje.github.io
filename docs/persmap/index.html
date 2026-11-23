@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<base href="/persmap/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VALZ – Persmap</title>
+<meta name="description" content="Persmap van VALZ, dialectrock uit de Achterhoek: persfoto, logo's, logo-animatie, bio en links.">
+<meta property="og:title" content="VALZ – Persmap">
+<meta property="og:image" content="VALZ_persfoto.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--y:#FFED00;--k:#0E0E0E;--p:#F6F4EE}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--k);color:var(--p);font-family:'Archivo',sans-serif;line-height:1.55}
+  .wrap{max-width:1100px;margin:0 auto;padding:40px 24px 80px}
+  header{display:flex;flex-direction:column;align-items:center;gap:16px;padding:32px 0 48px;text-align:center}
+  header img{width:min(520px,80vw);height:auto}
+  .kicker{font-size:13px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--y)}
+  h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(28px,4vw,40px);text-transform:uppercase;letter-spacing:1px;margin:56px 0 20px;border-bottom:3px solid var(--y);padding-bottom:8px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .card{background:#1A1A1A;display:flex;flex-direction:column}
+  .card .media{background:#000;display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;overflow:hidden}
+  .card .media.chk{background:repeating-conic-gradient(#2a2a2a 0 25%,#202020 0 50%) 0 0/24px 24px}
+  .card .media.light{background:var(--p)}
+  .card img,.card video{max-width:100%;max-height:100%;display:block}
+  .card .media.photo img{width:100%;height:100%;object-fit:cover}
+  .card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .card h3{margin:0;font-size:17px;font-weight:800}
+  .card p{margin:0;font-size:14px;color:#C9C6BD}
+  .btn{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 16px;background:var(--y);color:var(--k);font-weight:800;text-decoration:none;text-transform:uppercase;letter-spacing:1.5px;font-size:14px}
+  .btn:hover{background:#fff}
+  .btn[aria-busy="true"]{opacity:.6}
+  .msg{font-size:13px;color:#C9C6BD;min-height:1em}
+  .text{background:var(--p);color:var(--k);padding:24px 28px;font-size:16px;max-width:780px}
+  .text p{margin:0 0 14px}
+  .text p:last-child{margin:0}
+  .short{background:var(--y);color:var(--k);padding:18px 22px;font-weight:600;font-size:17px;max-width:780px;margin-bottom:16px}
+  .lbl{display:block;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+  .links{display:flex;flex-wrap:wrap;gap:12px}
+  .links a{color:var(--y);font-weight:800;font-size:18px}
+  .links a:hover{color:#fff}
+  .links span{font-size:18px;font-weight:600}
+  .game{max-width:900px}
+  .game-lead{margin:0 0 10px;font-size:19px;font-weight:600;color:var(--p);max-width:720px}
+  .game-intro{margin:0 0 16px;color:#C9C6BD;max-width:720px}
+  .game-wrap{position:relative;border:3px solid var(--y);background:#CFE6F2}
+  .game-wrap canvas{display:block;width:100%;height:auto;touch-action:manipulation;cursor:pointer}
+  .game-over{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;text-align:center;background:rgba(14,14,14,.82)}
+  .game-over[hidden]{display:none}
+  .game-title{margin:0;font-family:'Anton',sans-serif;font-size:clamp(28px,5vw,48px);text-transform:uppercase;color:var(--y);line-height:1}
+  .game-msg{margin:0;max-width:520px;font-size:16px}
+  .game-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .btn-ghost{background:transparent;color:var(--y);box-shadow:inset 0 0 0 2px var(--y)}
+  .btn-ghost:hover{background:var(--y);color:var(--k)}
+  .game-over .btn{margin-top:4px;border:0;cursor:pointer;font-family:inherit}
+  .game-best{margin:10px 0 0;font-size:14px;color:#C9C6BD;min-height:1.2em}
+  .danger{display:flex;flex-direction:column;align-items:center;gap:12px;margin:0 0 24px}
+  .danger-btn{font-family:'Anton',sans-serif;font-size:clamp(24px,4vw,40px);text-transform:uppercase;letter-spacing:1px;color:var(--k);background:var(--y);border:0;padding:22px 44px;min-height:44px;cursor:pointer;position:relative;
+    box-shadow:0 0 0 8px var(--k),0 0 0 14px var(--y),0 10px 0 14px #9c8f00;transition:transform .08s;
+    background-image:repeating-linear-gradient(-45deg,var(--y) 0 22px,#ffe100 22px 44px)}
+  .danger-btn:hover{transform:translateY(-2px)}
+  .danger-btn:active{transform:translateY(6px);box-shadow:0 0 0 8px var(--k),0 0 0 14px var(--y),0 4px 0 14px #9c8f00}
+  .danger-btn:focus-visible{outline:3px solid #fff;outline-offset:20px}
+  .danger-note{margin:22px 0 0;min-height:1.2em;font-family:'Anton',sans-serif;font-size:clamp(20px,3vw,28px);text-transform:uppercase;letter-spacing:1px;color:var(--y);text-align:center;line-height:1.15}
+  .danger-note:not(:empty){background:var(--k);border:3px solid var(--y);padding:10px 18px;transform:rotate(-1.5deg)}
+  @keyframes zap-shake{0%,100%{transform:translate(0,0)}10%{transform:translate(-6px,3px) rotate(-.4deg)}20%{transform:translate(5px,-4px) rotate(.4deg)}30%{transform:translate(-4px,-2px)}40%{transform:translate(6px,4px) rotate(.3deg)}50%{transform:translate(-5px,2px) rotate(-.3deg)}60%{transform:translate(4px,-3px)}70%{transform:translate(-3px,4px)}80%{transform:translate(3px,-2px)}90%{transform:translate(-2px,1px)}}
+  .zapped{animation:zap-shake .35s linear infinite;filter:contrast(1.25) saturate(1.3)}
+  .blackout{position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,0);transition:background .6s ease .25s;display:flex;align-items:center;justify-content:center;padding:24px}
+  .blackout.on{background:#000}
+  .blackout.off{opacity:0;transition:opacity .5s}
+  .blackout canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .bo-msg{position:relative;max-width:640px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;opacity:0;transform:translateY(12px);transition:opacity .8s,transform .8s}
+  .bo-msg.show{opacity:1;transform:none}
+  .bo-msg p{margin:0;font-family:'Anton',sans-serif;font-size:clamp(34px,6vw,64px);text-transform:uppercase;color:var(--y);line-height:1}
+  .bo-msg .bo-sub{font-family:'Archivo',sans-serif;font-size:clamp(16px,2.2vw,20px);text-transform:none;color:var(--p);line-height:1.5;font-weight:600}
+  .bo-bolt{margin-top:10px;background:transparent;border:0;cursor:pointer;padding:12px;min-width:44px;min-height:44px;animation:bo-pulse 1.4s ease-in-out infinite}
+  .bo-bolt:focus-visible{outline:3px solid var(--y);outline-offset:6px}
+  @keyframes bo-pulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 6px rgba(255,237,0,.5))}50%{transform:scale(1.1);filter:drop-shadow(0 0 22px rgba(255,237,0,.9))}}
+  @media (prefers-reduced-motion: reduce){.bo-bolt{animation:none}}
+  .drive-all{display:flex;justify-content:center;margin:8px 0 0}
+  .drive-all .btn{font-size:16px;padding:14px 24px}
+  @media (max-width: 640px){
+    .game-wrap{display:flex;flex-direction:column}
+    .game-over{position:static;inset:auto;background:var(--k);padding:18px 16px;border-top:3px solid var(--y)}
+    .game-title{font-size:30px}
+    .game-msg{font-size:15px}
+    .game-over .btn{width:100%}
+  }
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid #333;font-size:14px;color:#C9C6BD}
+  footer a{color:var(--y)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p style="margin:0;padding-top:8px"><a class="home-link" href="/" style="color:var(--y);font-weight:800;text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;font-size:14px">&larr; Naar valz.nl</a></p>
+  <header>
+    <span class="kicker">Persmap</span>
+    <img src="VALZ_logo_geel_transparant.png" alt="VALZ logo">
+    <span class="kicker">Dialectrock uit de Achterhoek</span>
+  </header>
+
+  <div class="danger">
+    <button type="button" class="danger-btn" id="dangerBtn"><span>Druk niet op de knop!</span></button>
+    <p class="danger-note" id="dangerNote" aria-live="polite"></p>
+  </div>
+
+  <h2>Persfoto</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="media photo"><img src="VALZ_persfoto.jpg" alt="Persfoto VALZ: de vijf bandleden liggen in oranje werkkleding op een houten bed vol stro in een weiland"></div>
+      <div class="body"><h3>Persfoto 2026</h3><p>JPG · 2576 × 2576 px · met logo</p><a class="btn" href="VALZ_persfoto.jpg" download>Download</a></div>
+    </div>
+  </div>
+
+  <h2>Logo</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="media"><img src="VALZ_logo_zwart-geel.png" alt="VALZ logo geel op zwart"></div>
+      <div class="body"><h3>Geel op zwart</h3><p>PNG · 8000 × 4500 px</p><a class="btn" href="VALZ_logo_zwart-geel.png" download>Download</a></div>
+    </div>
+    <div class="card">
+      <div class="media chk"><img src="VALZ_logo_geel_transparant.png" alt="VALZ logo geel, transparante achtergrond"></div>
+      <div class="body"><h3>Geel, transparant</h3><p>PNG · voor op donkere achtergronden</p><a class="btn" href="VALZ_logo_geel_transparant.png" download>Download</a></div>
+    </div>
+    <div class="card">
+      <div class="media chk"><img src="VALZ_logo_wit_transparant.png" alt="VALZ logo wit, transparante achtergrond"></div>
+      <div class="body"><h3>Wit, transparant</h3><p>PNG · voor op foto's</p><a class="btn" href="VALZ_logo_wit_transparant.png" download>Download</a></div>
+    </div>
+    <div class="card">
+      <div class="media light"><img src="VALZ_logo_zwart_transparant.png" alt="VALZ logo zwart, transparante achtergrond"></div>
+      <div class="body"><h3>Zwart, transparant</h3><p>PNG · voor op lichte achtergronden</p><a class="btn" href="VALZ_logo_zwart_transparant.png" download>Download</a></div>
+    </div>
+    <div class="card">
+      <div class="media" style="background:#FFED00"><img src="VALZ_logo_zwart_transparant.png" alt="Voorbeeld uit de huisstijl"></div>
+      <div class="body"><h3>Huisstijl (PDF)</h3><p>Logo, kleuren en toepassingen</p><a class="btn" href="VALZ_huisstijl.pdf" download>Download</a></div>
+    </div>
+  </div>
+
+  <h2>Logo-animatie</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="media"><video src="VALZ_logo_animatie_met_geluid.mp4" controls preload="metadata" playsinline></video></div>
+      <div class="body"><h3>Met geluid</h3><p>MP4 · 1920 × 1080 · 7 sec</p><a class="btn" href="VALZ_logo_animatie_met_geluid.mp4" download>Download</a></div>
+    </div>
+    <div class="card">
+      <div class="media"><video src="VALZ_logo_animatie_zonder_geluid.mp4" controls preload="metadata" playsinline muted></video></div>
+      <div class="body"><h3>Zonder geluid</h3><p>MP4 · 1920 × 1080 · 7 sec</p><a class="btn" href="VALZ_logo_animatie_zonder_geluid.mp4" download>Download</a></div>
+    </div>
+  </div>
+
+  <h2>Over VALZ</h2>
+  <div class="short"><span class="lbl">Korte tekst – voor agenda &amp; socials</span>VALZ is een dialectrockband bestaande uit vijf jonge honden uit de Achterhoek, die schik hebben met mekaar en fijne plaatjes ten gehore brengen. Met fijne plaatjes bedoelen we: dialectrock (eigen werk en covers), hier en daar wat piratenhits, wat Amerikaanse (country)rock en nog meer gekkigheid!</div>
+  <div class="text">
+    <span class="lbl">Lange tekst</span>
+    <p>VALZ is een stel jonge honden uit de Achterhoek dat vooral schik heeft met mekaar. En omdat gedeelde schik dubbele schik is, nemen ze die gewoon mee het podium op. Daar brengen ze fijne plaatjes ten gehore. Met fijne plaatjes bedoelen we: dialectrock (eigen werk en covers), hier en daar wat piratenhits, wat Amerikaanse (country)rock en nog meer gekkigheid.</p>
+    <p>De jongens zijn dit jaar allemaal volwassen geworden (volgens de wet dan tenminste). Ze kennen mekaar als vrienden van school. En doordat ze ooit ineens instrumenten in de klauwen kregen gedrukt, begonnen ze met muziek maken. En dat ging eigenlijk best wel mooi.<br>Van kleine optredentjes hier en daar naar steeds grotere podia.<br>En nu hebben ze sinds dit jaar zelfs eigen muziek uitgebracht!</p>
+    <p>Onze frontman Eijse rijdt daarom tegenwoordig ook in een Cadillac. Vooral om de lady's gek te maken, maar ook zeker om bij elk optreden aan te komen als een man van stand. Alleen stond 'ie van de week stil met z'n roestbak bij het tankstation en moest zijn mama hem ophalen. Wat 'n lieve moeder het ie toch, onnie?</p>
+    <p>Wat VALZ anders maakt dan de gemiddelde (dialect)rockband? VALZ is ontstaan uit een echte vriendengroep en dat merk je nog steeds op het podium. D'r kwam ook nog 'n keer een toetsenist aanwaaien. Den kearl zit er nu ook al weer bijna drie jaar bij. Naast z'n toetsenapparaat trekt Milan ook de hele dagen met zo'n trekzak. Ook wel pensorgel genoemd.</p>
+    <p>Verder heb je dus Eijse als leadzanger en slaggitarist, Bram op leadgitaar, Jelte op bas (en een beetje geschreeuw) en Jimmy achter de drums. Sinds 2 maart 2025 heet het geheel VALZ.</p>
+  </div>
+
+  <h2>Bezetting</h2>
+  <div class="text" style="max-width:780px">
+    <p><strong>Eijse</strong> – leadzang &amp; slaggitaar<br><strong>Bram</strong> – leadgitaar &amp; backing vocals<br><strong>Milan</strong> – toetsen, accordeon &amp; backing vocals<br><strong>Jelte</strong> – bas &amp; een beetje geschreeuw<br><strong>Jimmy</strong> – drums</p>
+  </div>
+
+  <h2>Luister</h2>
+  <div class="links">
+    <a href="https://open.spotify.com/artist/2zYLGBV3nCSA6yiWZgkFmz" target="_blank" rel="noopener">VALZ op Spotify</a>
+  </div>
+
+  <h2>Tag ons</h2>
+  <div class="links" style="flex-direction:column;gap:8px">
+    <span>Instagram — <strong>@valzband</strong></span>
+    <span>TikTok — <a href="https://www.tiktok.com/@valzband" target="_blank" rel="noopener">@valzband</a></span>
+    <span>Facebook — <a href="https://www.facebook.com/ValzBand/" target="_blank" rel="noopener">facebook.com/ValzBand</a></span>
+  </div>
+
+  <h2>Bonus: haal de pomp</h2>
+  <div class="game">
+    <p class="game-lead">Verveel je je op je werk? Daar hebben wij de perfecte oplossing voor. Dit geheime spelletje vind je alleen hier: ultieme ontspanning én ultieme spanning in één. Vertel het niet door aan je baas.</p>
+    <p class="game-intro">Eijse is in z'n Cadillac onderweg naar een optreden, maar de tank is bijna leeg. Spring over hooibalen en trekkers, pak de jerrycans en haal het tankstation. Anders moet mama hem weer komen halen en is VALZ z'n zanger kwijt.</p>
+    <div class="game-wrap">
+      <canvas id="valzgame" tabindex="0" width="900" height="320" aria-label="Spel: rij de Cadillac naar het tankstation" role="img"></canvas>
+      <div class="game-over" id="gameOverlay">
+        <p class="game-title" id="gameTitle">Haal de pomp</p>
+        <p class="game-msg" id="gameMsg">Springen: spatiebalk, pijltje omhoog, klikken of tikken.</p>
+        <div class="game-btns"><button type="button" class="btn" id="gameStart">Start de roestbak</button></div>
+      </div>
+    </div>
+    <p class="game-best" id="gameBest"></p>
+  </div>
+
+  <footer>Vragen of ander materiaal nodig? <a href="mailto:valzbandje@gmail.com">valzbandje@gmail.com</a> · 06 21 43 49 85</footer>
+</div>
+
+<script>
+(() => {
+  const cv = document.getElementById('valzgame');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = 900, H = 320, GROUND = 262;
+  const overlay = document.getElementById('gameOverlay');
+  const titleEl = document.getElementById('gameTitle');
+  const msgEl = document.getElementById('gameMsg');
+  const startBtn = document.getElementById('gameStart');
+  const bestEl = document.getElementById('gameBest');
+
+  const FULL_GOAL = 800;     // meters tot de pomp
+  let GOAL = FULL_GOAL, testRun = false;
+  const PX_PER_M = 40;
+  const Y = '#FFED00', K = '#0E0E0E';
+
+  let best = 0;
+  try { best = Number(localStorage.getItem('valz_pomp_best')) || 0; } catch (e) {}
+  const showBest = () => { bestEl.textContent = best > 0 ? `Jouw beste rit: ${Math.round(best)} m${best >= GOAL ? ' (pomp gehaald!)' : ''}` : ''; };
+  showBest();
+
+  let state = 'idle', last = 0, raf = 0;
+  let jumpBuf = 0, car, obstacles, cans, speed, dist, fuel, nextObs, nextCan, scroll, station, flash;
+
+  function reset() {
+    car = { x: 110, y: GROUND, vy: 0, w: 128, h: 46, onGround: true };
+    obstacles = []; cans = [];
+    speed = 330; dist = 0; fuel = 100; scroll = 0; station = null; flash = 0;
+    nextObs = 1.2; nextCan = 2.5;
+  }
+
+  function jump() {
+    if (state !== 'playing') return;
+    if (car.onGround) { car.vy = -760; car.onGround = false; } else { jumpBuf = 0.15; }
+  }
+
+  function start(goal) {
+    GOAL = goal || FULL_GOAL; testRun = GOAL !== FULL_GOAL;
+    reset();
+    state = 'playing';
+    overlay.hidden = true;
+    last = performance.now();
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(loop);
+    cv.focus({ preventScroll: true });
+  }
+
+  function end(title, msg) {
+    state = 'over';
+    if (!testRun && dist > best) { best = dist; try { localStorage.setItem('valz_pomp_best', String(best)); } catch (e) {} }
+    showBest();
+    titleEl.textContent = title;
+    msgEl.textContent = msg;
+    startBtn.textContent = 'Nog een keer';
+    overlay.hidden = false;
+    draw();
+  }
+
+  function spawnObstacle() {
+    const tractor = Math.random() < 0.35 && dist > 60;
+    obstacles.push(tractor
+      ? { type: 'trekker', x: W + 20, w: 92, h: 62 }
+      : { type: 'hooibaal', x: W + 20, w: 50, h: 44 });
+  }
+
+  function spawnCan() {
+    const high = Math.random() < 0.6;
+    cans.push({ x: W + 40, y: high ? GROUND - 120 : GROUND - 34, w: 26, h: 32 });
+  }
+
+  function hit(a, b) {
+    return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+  }
+
+  function loop(t) {
+    const dt = Math.min(0.033, (t - last) / 1000);
+    last = t;
+    if (state !== 'playing') return;
+    update(dt);
+    draw();
+    if (state === 'playing') raf = requestAnimationFrame(loop);
+  }
+
+  function update(dt) {
+    speed = Math.min(560, speed + 9 * dt);
+    const dx = speed * dt;
+    scroll += dx;
+    dist += dx / PX_PER_M;
+    fuel -= 6 * dt;
+    if (flash > 0) flash -= dt;
+
+    car.vy += 1700 * dt;
+    if (jumpBuf > 0) jumpBuf -= dt;
+    car.y += car.vy * dt;
+    if (car.y >= GROUND) { car.y = GROUND; car.vy = 0; car.onGround = true; if (jumpBuf > 0) { jumpBuf = 0; car.vy = -760; car.onGround = false; } }
+
+    if (!station) {
+      nextObs -= dt; nextCan -= dt;
+      if (nextObs <= 0) { spawnObstacle(); nextObs = (0.9 + Math.random() * 1.1) * (420 / speed) * 1.25; }
+      if (nextCan <= 0) { spawnCan(); nextCan = 2.6 + Math.random() * 2.2; }
+      if (dist >= GOAL - 12) station = { x: W + 40 };
+    } else {
+      station.x -= dx;
+    }
+
+    obstacles.forEach(o => o.x -= dx);
+    cans.forEach(c => c.x -= dx);
+    obstacles = obstacles.filter(o => o.x + o.w > -20);
+    cans = cans.filter(c => c.x + c.w > -20 && !c.taken);
+
+    const box = { x: car.x + 16, y: car.y - car.h + 12, w: car.w - 34, h: car.h - 14 };
+    for (const o of obstacles) {
+      if (hit(box, { x: o.x + 10, y: GROUND - o.h + 8, w: o.w - 20, h: o.h - 8 })) {
+        return end(o.type === 'trekker' ? 'Tegen de trekker' : 'Boem, hooibaal',
+          o.type === 'trekker'
+            ? `Na ${Math.round(dist)} m tegen een trekker. De boer is nie blij en mama is al onderweg.`
+            : `Na ${Math.round(dist)} m dwars door een hooibaal. Stro in de grille, mama komt je halen.`);
+      }
+    }
+    for (const c of cans) {
+      if (!c.taken && hit(box, c)) { c.taken = true; fuel = Math.min(100, fuel + 32); flash = 0.25; }
+    }
+    if (fuel <= 0) {
+      fuel = 0;
+      return end('Roestbak staat stil', `Na ${Math.round(dist)} m is de tank leeg. Mama komt je halen. Wat 'n lieve moeder, onnie?`);
+    }
+    if (station && station.x <= car.x + car.w - 30) {
+      dist = GOAL;
+      celebrate();
+      return end('Pomp gehaald!', 'Eijse rijdt voor als een man van stand. De lady\'s zijn gek. Mama mag thuisblijven.');
+    }
+  }
+
+
+  // ---------- feestje bij winst ----------
+  function celebrate() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fx = document.createElement('canvas');
+    fx.setAttribute('aria-hidden', 'true');
+    fx.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999';
+    document.body.appendChild(fx);
+    const c = fx.getContext('2d');
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    let vw = 0, vh = 0;
+    const size = () => { vw = window.innerWidth; vh = window.innerHeight; fx.width = vw * dpr; fx.height = vh * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0); };
+    size(); window.addEventListener('resize', size);
+    const colors = ['#FFED00', '#0E0E0E', '#FFFFFF', '#FF8A00', '#FFED00'];
+    const parts = [];
+    const burst = (fromLeft, n, beers) => {
+      for (let i = 0; i < n; i++) {
+        const beer = i < beers;
+        const ang = (fromLeft ? -1 : -Math.PI + 1) + (Math.random() - 0.5) * 0.9 + (fromLeft ? -0.25 : 0.25);
+        const sp = (beer ? 900 : 1000) + Math.random() * 700;
+        parts.push({
+          beer, x: fromLeft ? -10 : vw + 10, y: vh + 10,
+          vx: Math.cos(ang) * sp * (vw / 1400 + 0.3), vy: Math.sin(ang) * sp * (vh / 900 + 0.2),
+          r: Math.random() * Math.PI * 2, vr: (Math.random() - 0.5) * (beer ? 8 : 14),
+          w: beer ? 26 + Math.random() * 8 : 7 + Math.random() * 7, h: beer ? 0 : 4 + Math.random() * 6,
+          col: colors[(Math.random() * colors.length) | 0], spill: []
+        });
+      }
+    };
+    const total = reduce ? 1200 : 5200;
+    const waves = reduce ? [[0, 40, 3]] : [[0, 110, 8], [700, 90, 6], [1500, 90, 6], [2400, 70, 5]];
+    waves.forEach(([t, n, b]) => setTimeout(() => { burst(true, n / 2, b / 2); burst(false, n / 2, b / 2); }, t));
+
+    // --- bier tegen het scherm (tentfeest-stijl) ---
+    const splats = [];
+    const mkSplat = (cx, cy, R, delay) => {
+      const n = 28, radii = [];
+      for (let i = 0; i < n; i++) radii.push(R * (0.75 + Math.random() * 0.45) * (Math.random() < 0.18 ? 1.35 : 1));
+      const drops = [];
+      for (let i = 0; i < 18 + (Math.random() * 14 | 0); i++) {
+        const a = Math.random() * Math.PI * 2, d = R * (1.1 + Math.random() * 1.1);
+        drops.push({ x: Math.cos(a) * d, y: Math.sin(a) * d, r: 2 + Math.random() * R * 0.07 });
+      }
+      const drips = [];
+      for (let i = 0; i < 4 + (Math.random() * 5 | 0); i++) {
+        const a = Math.PI * (0.15 + Math.random() * 0.7);   // onderkant
+        const idx = Math.round(a / (Math.PI * 2) * n) % n;
+        drips.push({ x: Math.cos(a) * radii[idx] * 0.9, y: Math.sin(a) * radii[idx] * 0.9, w: 5 + Math.random() * 9,
+          len: 0, max: R * (0.8 + Math.random() * 2.2), sp: 60 + Math.random() * 140 });
+      }
+      const foam = [];
+      for (let i = 0; i < 26; i++) {
+        const a = Math.random() * Math.PI * 2, d = Math.random() * R * 0.7;
+        foam.push({ x: Math.cos(a) * d, y: Math.sin(a) * d - R * 0.15, r: 3 + Math.random() * R * 0.09 });
+      }
+      splats.push({ cx, cy, R, radii, drops, drips, foam, delay });
+    };
+    if (!reduce) {
+      mkSplat(vw * (0.4 + Math.random() * 0.2), vh * (0.35 + Math.random() * 0.15), Math.min(vw, vh) * 0.2, 500);
+      mkSplat(vw * (0.12 + Math.random() * 0.15), vh * (0.2 + Math.random() * 0.2), Math.min(vw, vh) * 0.11, 680);
+      mkSplat(vw * (0.75 + Math.random() * 0.15), vh * (0.25 + Math.random() * 0.3), Math.min(vw, vh) * 0.13, 820);
+      mkSplat(vw * (0.55 + Math.random() * 0.3), vh * (0.7 + Math.random() * 0.15), Math.min(vw, vh) * 0.08, 950);
+    }
+    function drawSplat(sp, age, dt, fade) {
+      const t = age - sp.delay; if (t < 0) return;
+      const k = t < 140 ? 0.3 + 0.85 * (t / 140) : (t < 220 ? 1.15 - 0.15 * ((t - 140) / 80) : 1);   // klets met overshoot
+      c.save(); c.translate(sp.cx, sp.cy); c.scale(k, k);
+      c.globalAlpha = fade * 0.8;
+      // druppels die naar beneden lopen
+      c.fillStyle = '#E8960F';
+      for (const d of sp.drips) {
+        if (t > 250) d.len = Math.min(d.max, d.len + d.sp * dt * (1 - d.len / (d.max * 1.15)));
+        c.fillRect(d.x - d.w / 2, d.y, d.w, d.len);
+        c.beginPath(); c.arc(d.x, d.y + d.len, d.w * 0.75, 0, Math.PI * 2); c.fill();
+      }
+      // de klets zelf
+      const grad = c.createRadialGradient(-sp.R * 0.2, -sp.R * 0.25, sp.R * 0.1, 0, 0, sp.R * 1.2);
+      grad.addColorStop(0, '#FFC94A'); grad.addColorStop(0.6, '#F2A516'); grad.addColorStop(1, '#C97A08');
+      c.fillStyle = grad;
+      c.beginPath();
+      const n = sp.radii.length;
+      for (let i = 0; i <= n; i++) {
+        const a0 = (i % n) / n * Math.PI * 2, a1 = ((i + 0.5) % n) / n * Math.PI * 2;
+        const r0 = sp.radii[i % n], r1 = (sp.radii[i % n] + sp.radii[(i + 1) % n]) / 2 * 0.9;
+        if (i === 0) c.moveTo(Math.cos(a0) * r0, Math.sin(a0) * r0);
+        else c.quadraticCurveTo(Math.cos(a0 - Math.PI / n) * r1 * 1.08, Math.sin(a0 - Math.PI / n) * r1 * 1.08, Math.cos(a0) * r0, Math.sin(a0) * r0);
+      }
+      c.closePath(); c.fill();
+      // spetters
+      c.fillStyle = '#F2A516';
+      for (const d of sp.drops) { c.beginPath(); c.arc(d.x, d.y, d.r, 0, Math.PI * 2); c.fill(); }
+      // schuim
+      const foamFade = Math.max(0, 1 - t / 2600);
+      c.globalAlpha = fade * 0.9 * foamFade;
+      c.fillStyle = '#FFF8E7';
+      for (const f of sp.foam) { c.beginPath(); c.arc(f.x, f.y, f.r * (0.6 + 0.4 * foamFade), 0, Math.PI * 2); c.fill(); }
+      // glans, alsof het op glas zit
+      c.globalAlpha = fade * 0.55;
+      c.strokeStyle = '#FFFFFF'; c.lineWidth = Math.max(2, sp.R * 0.04); c.lineCap = 'round';
+      c.beginPath(); c.arc(-sp.R * 0.1, -sp.R * 0.1, sp.R * 0.55, Math.PI * 1.1, Math.PI * 1.45); c.stroke();
+      c.restore();
+      c.globalAlpha = fade;
+    }
+    const t0 = performance.now(); let prev = t0;
+    function drawBeer(p) {
+      const w = p.w, h = w * 1.25;
+      c.save(); c.translate(p.x, p.y); c.rotate(p.r);
+      c.fillStyle = 'rgba(255,255,255,0.35)'; c.fillRect(-w / 2 - 2, -h / 2 - 2, w + 4, h + 4);       // glas
+      c.fillStyle = '#F2A516'; c.fillRect(-w / 2, -h / 2 + h * 0.22, w, h * 0.78);                    // bier
+      c.fillStyle = '#FFFFFF';                                                                        // schuimkraag
+      c.beginPath(); c.arc(-w / 4, -h / 2 + h * 0.2, w * 0.28, 0, Math.PI * 2); c.arc(w / 6, -h / 2 + h * 0.16, w * 0.32, 0, Math.PI * 2); c.fill();
+      c.strokeStyle = '#FFFFFF'; c.lineWidth = 3;                                                     // oor
+      c.beginPath(); c.arc(w / 2 + 4, 0, w * 0.25, -Math.PI / 2, Math.PI / 2); c.stroke();
+      c.fillStyle = 'rgba(255,255,255,0.6)'; c.fillRect(-w / 2 + 3, -h / 2 + h * 0.3, 3, h * 0.55);   // glans
+      c.restore();
+    }
+    function frame(now) {
+      const dt = Math.min(0.033, (now - prev) / 1000); prev = now;
+      const age = now - t0;
+      c.clearRect(0, 0, vw, vh);
+      const fade = age > total - 700 ? Math.max(0, (total - age) / 700) : 1;
+      c.globalAlpha = fade;
+      for (const p of parts) {
+        p.vy += (p.beer ? 1500 : 900) * dt;
+        p.vx *= p.beer ? 0.995 : 0.985; if (!p.beer) p.vy = Math.min(p.vy, 260);
+        p.x += p.vx * dt; p.y += p.vy * dt; p.r += p.vr * dt;
+        if (p.beer) {
+          if (Math.random() < 0.6) p.spill.push({ x: p.x, y: p.y, vx: (Math.random() - 0.5) * 80, vy: (Math.random() - 0.5) * 80, life: 0.6 });
+          for (const d of p.spill) { d.vy += 600 * dt; d.x += d.vx * dt; d.y += d.vy * dt; d.life -= dt; }
+          p.spill = p.spill.filter(d => d.life > 0);
+          c.fillStyle = '#F2A516';
+          for (const d of p.spill) { c.globalAlpha = fade * Math.max(0, d.life / 0.6); c.beginPath(); c.arc(d.x, d.y, 3, 0, Math.PI * 2); c.fill(); }
+          c.globalAlpha = fade;
+          drawBeer(p);
+        } else {
+          c.save(); c.translate(p.x, p.y); c.rotate(p.r);
+          c.fillStyle = p.col; c.fillRect(-p.w / 2, -p.h / 2 * Math.abs(Math.cos(p.r * 2)) - 1, p.w, p.h * Math.abs(Math.cos(p.r * 2)) + 2);
+          if (p.col === '#0E0E0E') { c.strokeStyle = '#FFED00'; c.lineWidth = 1; c.strokeRect(-p.w / 2, -p.h / 2, p.w, p.h); }
+          c.restore();
+        }
+      }
+      for (const sp of splats) drawSplat(sp, age, dt, fade);
+      if (age < total) requestAnimationFrame(frame);
+      else { window.removeEventListener('resize', size); fx.remove(); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // ---------- tekenen ----------
+  function rect(x, y, w, h, c) { ctx.fillStyle = c; ctx.fillRect(x, y, w, h); }
+
+  function drawBackground() {
+    rect(0, 0, W, H, '#CFE6F2');
+    // zon
+    ctx.fillStyle = '#FFF4A8'; ctx.beginPath(); ctx.arc(780, 60, 30, 0, Math.PI * 2); ctx.fill();
+    // bomenrij (parallax)
+    const off = (scroll * 0.25) % 140;
+    ctx.fillStyle = '#5E8C4A';
+    for (let x = -off - 140; x < W + 140; x += 140) {
+      ctx.beginPath(); ctx.arc(x + 40, 168, 34, 0, Math.PI * 2); ctx.arc(x + 85, 160, 42, 0, Math.PI * 2); ctx.arc(x + 120, 172, 28, 0, Math.PI * 2); ctx.fill();
+    }
+    rect(0, 176, W, 40, '#7FB35A');           // weiland
+    rect(0, 216, W, 4, '#6A9A48');
+    rect(0, 220, W, 100, '#55575A');          // weg
+    rect(0, 220, W, 4, '#3F4144');
+    // gele streepjes
+    const doff = scroll % 80;
+    ctx.fillStyle = Y;
+    for (let x = -doff; x < W; x += 80) ctx.fillRect(x, 292, 40, 5);
+  }
+
+  function drawCar() {
+    const x = car.x, y = car.y, bob = car.onGround ? Math.sin(scroll / 18) * 1.2 : 0;
+    const by = y - 30 + bob;
+    // carrosserie
+    ctx.fillStyle = '#8CC8EC';
+    ctx.beginPath();
+    ctx.moveTo(x, by + 22); ctx.lineTo(x, by + 6); ctx.lineTo(x + 8, by - 4);   // staartvin
+    ctx.lineTo(x + 30, by + 2); ctx.lineTo(x + 40, by - 16); ctx.lineTo(x + 84, by - 16);
+    ctx.lineTo(x + 96, by + 2); ctx.lineTo(x + 124, by + 6); ctx.lineTo(x + 128, by + 22);
+    ctx.closePath(); ctx.fill();
+    // roestvlekken
+    ctx.fillStyle = '#9C5A2E';
+    [[18, 10, 7], [60, 14, 5], [104, 12, 6], [76, 4, 3]].forEach(([dx, dy, r]) => { ctx.beginPath(); ctx.arc(x + dx, by + dy, r, 0, Math.PI * 2); ctx.fill(); });
+    // ramen
+    ctx.fillStyle = '#2F4F63';
+    ctx.beginPath(); ctx.moveTo(x + 44, by - 12); ctx.lineTo(x + 60, by - 12); ctx.lineTo(x + 60, by + 1); ctx.lineTo(x + 36, by + 1); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(x + 64, by - 12); ctx.lineTo(x + 81, by - 12); ctx.lineTo(x + 90, by + 1); ctx.lineTo(x + 64, by + 1); ctx.closePath(); ctx.fill();
+    // Eijse (hoofd + pet)
+    ctx.fillStyle = '#F1C9A5'; ctx.beginPath(); ctx.arc(x + 72, by - 4, 5, 0, Math.PI * 2); ctx.fill();
+    rect(x + 66, by - 11, 12, 4, '#1F5FBF');
+    // chromen strip + bumper
+    rect(x + 4, by + 12, 120, 3, '#D9D9D9');
+    rect(x + 118, by + 16, 12, 6, '#D9D9D9');
+    rect(x - 2, by + 16, 8, 6, '#D9D9D9');
+    // koplamp
+    rect(x + 124, by + 8, 4, 5, Y);
+    // wielen
+    [[28, 0], [100, 0]].forEach(([dx]) => {
+      ctx.fillStyle = K; ctx.beginPath(); ctx.arc(x + dx, y - 6, 12, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#BDBDBD'; ctx.beginPath(); ctx.arc(x + dx, y - 6, 5, 0, Math.PI * 2); ctx.fill();
+    });
+    // uitlaatwolkje
+    if (car.onGround && state === 'playing') {
+      ctx.fillStyle = 'rgba(80,80,80,0.35)';
+      const p = (scroll / 6) % 12;
+      ctx.beginPath(); ctx.arc(x - 8 - p, y - 12 - p / 2, 5 + p / 3, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  function drawObstacle(o) {
+    const top = GROUND - o.h;
+    if (o.type === 'hooibaal') {
+      ctx.fillStyle = '#E3C15A'; ctx.beginPath(); ctx.ellipse(o.x + o.w / 2, top + o.h / 2, o.w / 2, o.h / 2, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#B8932F'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.ellipse(o.x + o.w / 2, top + o.h / 2, o.w / 4, o.h / 4, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(o.x + o.w / 2, top + o.h / 2, o.w / 2.6, o.h / 2.6, 0, 0, Math.PI * 2); ctx.stroke();
+    } else {
+      // trekker
+      rect(o.x + 6, top + 26, 70, 24, '#2E7D32');            // motorkap
+      rect(o.x + 44, top, 38, 40, '#2E7D32');                 // cabine
+      rect(o.x + 50, top + 6, 26, 18, '#BFE3F2');             // raam
+      rect(o.x + 10, top + 18, 5, 10, '#555');                // uitlaat
+      ctx.fillStyle = K; ctx.beginPath(); ctx.arc(o.x + 66, GROUND - 18, 18, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = Y; ctx.beginPath(); ctx.arc(o.x + 66, GROUND - 18, 7, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = K; ctx.beginPath(); ctx.arc(o.x + 18, GROUND - 10, 10, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = Y; ctx.beginPath(); ctx.arc(o.x + 18, GROUND - 10, 4, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  function drawCan(c) {
+    rect(c.x, c.y + 4, c.w, c.h - 4, '#C62828');
+    rect(c.x + 4, c.y, 10, 6, '#C62828');
+    rect(c.x + 4, c.y + 12, c.w - 8, 3, Y);
+    ctx.fillStyle = '#fff'; ctx.font = '700 11px Archivo, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('B', c.x + c.w / 2, c.y + 27);
+  }
+
+  function drawStation(s) {
+    const x = s.x, top = 120;
+    rect(x, top, 170, 14, K);                                  // dak
+    rect(x + 6, top + 2, 158, 10, Y);
+    ctx.fillStyle = K; ctx.font = '400 12px Anton, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('POMP', x + 85, top + 11);
+    rect(x + 14, top + 14, 8, GROUND - top - 14, '#777');      // palen
+    rect(x + 148, top + 14, 8, GROUND - top - 14, '#777');
+    rect(x + 70, GROUND - 60, 30, 60, '#C62828');              // pomp
+    rect(x + 75, GROUND - 52, 20, 14, '#fff');
+  }
+
+  function drawHud() {
+    const left = Math.max(0, Math.ceil(GOAL - dist));
+    ctx.fillStyle = 'rgba(14,14,14,0.85)'; ctx.fillRect(14, 12, 300, 56);
+    ctx.fillStyle = Y; ctx.font = '400 20px Anton, sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText(left > 0 ? `NOG ${left} M TOT DE POMP` : 'POMP IN ZICHT!', 26, 36);
+    ctx.fillStyle = '#fff'; ctx.font = '600 12px Archivo, sans-serif';
+    ctx.fillText('TANK', 26, 58);
+    rect(64, 49, 236, 10, '#444');
+    rect(64, 49, 236 * Math.max(0, fuel) / 100, 10, fuel < 25 ? '#E53935' : (flash > 0 ? '#fff' : Y));
+  }
+
+  function draw() {
+    if (!car) reset();
+    drawBackground();
+    if (station) drawStation(station);
+    cans.forEach(drawCan);
+    obstacles.forEach(drawObstacle);
+    drawCar();
+    if (state !== 'idle') drawHud();
+  }
+
+  // ---------- besturing ----------
+  startBtn.addEventListener('click', () => start(FULL_GOAL));
+  cv.addEventListener('pointerdown', e => { e.preventDefault(); jump(); });
+  window.addEventListener('keydown', e => {
+    if (state !== 'playing') return;
+    if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') { e.preventDefault(); jump(); }
+  });
+
+  reset();
+  document.fonts && document.fonts.ready.then(draw);
+  draw();
+})();
+</script>
+<script>
+(() => {
+  const btn = document.getElementById('dangerBtn');
+  const note = document.getElementById('dangerNote');
+  const wrap = document.querySelector('.wrap');
+  if (!btn) return;
+  let busy = false, presses = 0;
+  const lines = [
+    'Wij zeiden toch: niet drukken.',
+    'Nog een keer? Je leert het ook nooit.',
+    'De stoppen zun d\'r uut. Dankjewel.',
+    'Jimmy belt de elektricien.',
+    'Now is de elektricien dood.'
+  ];
+  function bolt(x0, y0, x1, y1, rough) {
+    let pts = [[x0, y0], [x1, y1]];
+    for (let it = 0; it < 7; it++) {
+      const nxt = [pts[0]];
+      for (let i = 0; i < pts.length - 1; i++) {
+        const [ax, ay] = pts[i], [bx, by] = pts[i + 1];
+        const len = Math.hypot(bx - ax, by - ay);
+        nxt.push([(ax + bx) / 2 + (Math.random() - 0.5) * len * rough, (ay + by) / 2 + (Math.random() - 0.5) * len * rough * 0.3], pts[i + 1]);
+      }
+      pts = nxt;
+    }
+    return pts;
+  }
+  function zap() {
+    if (busy) return; busy = true; presses++;
+    if (presses > lines.length) return blackout();
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fx = document.createElement('canvas');
+    fx.setAttribute('aria-hidden', 'true');
+    fx.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:10000';
+    document.body.appendChild(fx);
+    const c = fx.getContext('2d');
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const vw = window.innerWidth, vh = window.innerHeight;
+    fx.width = vw * dpr; fx.height = vh * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const r = btn.getBoundingClientRect();
+    const bx = r.left + r.width / 2, by = r.top + r.height / 2;
+    // max 3 inslagen, ruim uit elkaar (geen stroboscoop)
+    const strikes = (reduce ? [0] : [0, 750, 1500]).map((t, i) => {
+      const fromX = vw * (0.15 + Math.random() * 0.7);
+      const target = i === 0 ? [bx, by] : [vw * (0.1 + Math.random() * 0.8), vh * (0.5 + Math.random() * 0.45)];
+      const main = bolt(fromX, -20, target[0], target[1], 0.55);
+      const branches = [];
+      for (let k = 0; k < 5; k++) {
+        const p = main[(main.length * (0.2 + Math.random() * 0.6)) | 0];
+        branches.push(bolt(p[0], p[1], p[0] + (Math.random() - 0.5) * vw * 0.35, p[1] + vh * (0.1 + Math.random() * 0.25), 0.5));
+      }
+      return { t, main, branches, hit: target };
+    });
+    const total = reduce ? 900 : 2800;
+    if (!reduce && wrap) wrap.classList.add('zapped');
+    const t0 = performance.now();
+    const path = pts => { c.beginPath(); c.moveTo(pts[0][0], pts[0][1]); for (const p of pts) c.lineTo(p[0], p[1]); c.stroke(); };
+    function frame(now) {
+      const age = now - t0;
+      c.clearRect(0, 0, vw, vh);
+      for (const s of strikes) {
+        const a = age - s.t;
+        if (a < 0 || a > 420) continue;
+        const life = 1 - a / 420;
+        // flits (één per inslag)
+        c.fillStyle = `rgba(255,250,210,${(reduce ? 0.25 : 0.55) * Math.max(0, 1 - a / 160)})`;
+        c.fillRect(0, 0, vw, vh);
+        const flick = 0.75 + Math.random() * 0.25;
+        c.lineJoin = 'round'; c.lineCap = 'round';
+        c.shadowColor = '#FFED00'; c.shadowBlur = 30;
+        c.strokeStyle = `rgba(255,237,0,${life * flick})`; c.lineWidth = 9; path(s.main);
+        c.strokeStyle = `rgba(255,255,255,${life * flick})`; c.lineWidth = 3.5; path(s.main);
+        c.lineWidth = 2; c.strokeStyle = `rgba(255,245,160,${life * 0.8 * flick})`;
+        s.branches.forEach(path);
+        c.shadowBlur = 0;
+        // vonken bij de inslag
+        c.fillStyle = `rgba(255,237,0,${life})`;
+        for (let k = 0; k < 14; k++) {
+          const ang = Math.random() * Math.PI * 2, d = Math.random() * 70 * (1 - life + 0.3);
+          c.fillRect(s.hit[0] + Math.cos(ang) * d, s.hit[1] + Math.sin(ang) * d, 3, 3);
+        }
+      }
+      if (age < total) requestAnimationFrame(frame);
+      else {
+        fx.remove(); if (wrap) wrap.classList.remove('zapped');
+        note.textContent = lines[Math.min(presses - 1, lines.length - 1)];
+        busy = false;
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function blackout() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    note.textContent = '';
+    const ov = document.createElement('div');
+    ov.className = 'blackout';
+    ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Stroomstoring');
+    ov.innerHTML = '<canvas aria-hidden="true"></canvas><div class="bo-msg" hidden><p>Daar hadden we je, hè?</p><p class="bo-sub">Klik snel op de bliksemschicht hieronder om terug te gaan naar waar je eigenlijk voor kwam. Afgeleide hond!</p><button type="button" class="bo-bolt" aria-label="Terug naar de persmap"><svg viewBox="0 0 48 100" width="70" height="146" aria-hidden="true"><polygon points="30,0 4,56 22,56 14,100 44,38 26,38 38,0" fill="#FFED00"/></svg></button></div>';
+    document.body.appendChild(ov);
+    document.documentElement.style.overflow = 'hidden';
+    const cv = ov.querySelector('canvas'), c = cv.getContext('2d');
+    const dpr = Math.min(2, window.devicePixelRatio || 1), vw = window.innerWidth, vh = window.innerHeight;
+    cv.width = vw * dpr; cv.height = vh * dpr; c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const main = bolt(vw * 0.5 + (Math.random() - 0.5) * vw * 0.2, -20, vw * 0.5, vh * 0.75, 0.5);
+    const br = [];
+    for (let k = 0; k < 9; k++) { const p = main[(main.length * (0.15 + Math.random() * 0.7)) | 0]; br.push(bolt(p[0], p[1], p[0] + (Math.random() - 0.5) * vw * 0.6, p[1] + vh * (0.1 + Math.random() * 0.35), 0.5)); }
+    const path = pts => { c.beginPath(); c.moveTo(pts[0][0], pts[0][1]); for (const p of pts) c.lineTo(p[0], p[1]); c.stroke(); };
+    const t0 = performance.now();
+    function frame(now) {
+      const a = now - t0;
+      c.clearRect(0, 0, vw, vh);
+      // één grote witte flits, daarna langzaam zwart
+      if (a < 900) {
+        const flash = reduce ? 0.3 * Math.max(0, 1 - a / 300) : Math.max(0, 1 - a / 500);
+        c.fillStyle = `rgba(255,252,225,${flash})`; c.fillRect(0, 0, vw, vh);
+        const life = Math.max(0, 1 - a / 700);
+        c.lineJoin = 'round'; c.lineCap = 'round'; c.shadowColor = '#FFED00'; c.shadowBlur = 50;
+        c.strokeStyle = `rgba(255,237,0,${life})`; c.lineWidth = 16; path(main);
+        c.strokeStyle = `rgba(255,255,255,${life})`; c.lineWidth = 6; path(main);
+        c.lineWidth = 3; c.strokeStyle = `rgba(255,245,160,${life * 0.85})`; br.forEach(path);
+        c.shadowBlur = 0;
+        requestAnimationFrame(frame);
+      }
+    }
+    requestAnimationFrame(frame);
+    requestAnimationFrame(() => ov.classList.add('on'));
+    setTimeout(() => {
+      const m = ov.querySelector('.bo-msg'); m.hidden = false;
+      requestAnimationFrame(() => m.classList.add('show'));
+      const b = ov.querySelector('.bo-bolt'); b.focus();
+      b.addEventListener('click', () => {
+        ov.classList.add('off');
+        setTimeout(() => { ov.remove(); document.documentElement.style.overflow = ''; busy = false; presses = 0; btn.focus(); }, 500);
+      });
+    }, 5000);
+  }
+  btn.addEventListener('click', zap);
+})();
+</script>
+</body>
+</html>
