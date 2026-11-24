@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VALZ – Dialectrock uit de Achterhoek</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="VALZ: vijf jonge honden uit de Achterhoek met dialectrock, piratenhits, Amerikaanse (country)rock en nog meer gekkigheid. Agenda, muziek en contact.">
 <meta property="og:title" content="VALZ – Dialectrock uit de Achterhoek">
 <meta property="og:description" content="Dialectrock, piratenhits en nog meer gekkigheid. Bekijk de agenda en luister onze muziek.">
 <meta property="og:image" content="img/bandfoto.jpg">
 <meta name="theme-color" content="#0E0E0E">
-<link rel="icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
@@ -169,15 +171,14 @@
   .date .d{display:block;font-family:'Anton',sans-serif;font-size:40px}
   .date .m{display:block;font-weight:800;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-top:4px}
   .gig h3{margin:0;font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(22px,2.4vw,28px);text-transform:uppercase;line-height:1.1}
+  .gig .quip{margin:6px 0 0;color:var(--y);font-size:14px;font-weight:700;font-style:italic}
   .gig .meta{margin:4px 0 0;color:var(--m);font-size:15px}
   .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;margin-left:8px;vertical-align:middle;border:2px solid var(--m);color:var(--m)}
   .tag.y{border-color:var(--y);color:var(--y)}
-  .ics{background:none;border:2px solid var(--y);color:var(--y);font-family:inherit;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:10px 12px;min-height:44px;cursor:pointer;white-space:nowrap}
-  .ics:hover{background:var(--y);color:var(--k)}
   .year{font-family:'Anton',sans-serif;font-size:28px;color:var(--y);margin:24px 0 4px;list-style:none}
   .agenda-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;border:3px dashed var(--y);padding:22px 24px}
   .agenda-cta p{margin:0;font-size:19px;font-weight:600}
-  @media (max-width:640px){.gig{grid-template-columns:72px 1fr;gap:14px}.gig .ics{grid-column:1/-1}.date .d{font-size:32px}}
+  @media (max-width:640px){.gig{grid-template-columns:72px 1fr;gap:14px}.date .d{font-size:32px}}
 
   /* fotos */
   .strip{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px max(24px,calc((100vw - 1160px) / 2 + 24px)) 20px;scroll-padding-left:max(24px,calc((100vw - 1160px) / 2 + 24px));cursor:grab;scrollbar-color:var(--y) var(--k2)}
@@ -238,9 +239,117 @@
     .reveal{opacity:1;transform:none;transition:none}
     .member,.gig,.btn{transition:none}
   }
+
+
+  .sec-head h2{position:relative;display:table;padding-bottom:14px}
+  .sec-head h2::after{content:"";position:absolute;left:0;width:min(100%,380px);bottom:-6px;height:20px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%2012%27%20preserveAspectRatio%3D%27none%27%3E%3Cpolyline%20points%3D%270%2C10%2034%2C5%2030%2C9%2064%2C3%2060%2C7%20100%2C1%27%20fill%3D%27none%27%20stroke%3D%27%23FFED00%27%20stroke-width%3D%274%27%20vector-effect%3D%27non-scaling-stroke%27%20stroke-linejoin%3D%27miter%27%20stroke-linecap%3D%27square%27/%3E%3C/svg%3E") center/100% 20px no-repeat;clip-path:inset(0 100% 0 0);transform:scaleY(.4);transform-origin:center}
+  .sec-head h2.lit::after{animation:h2bolt 1s cubic-bezier(.65,0,.35,1) forwards}
+  .sec-head h2.lit{animation:h2flash .9s ease-out}
+  @keyframes h2bolt{0%{clip-path:inset(0 100% 0 0);transform:scaleY(.4)}40%{clip-path:inset(0 0 0 0);transform:scaleY(1.8);filter:drop-shadow(0 0 10px #FFED00) brightness(1.8)}70%{filter:drop-shadow(0 0 3px #FFED00)}100%{clip-path:inset(0 0 0 0);transform:scaleY(1);filter:none}}
+  @keyframes h2flash{0%{text-shadow:none}35%{text-shadow:0 0 18px rgba(255,237,0,.75)}100%{text-shadow:none}}
+  @media (prefers-reduced-motion: reduce){.sec-head h2::after{clip-path:none;transform:none}.sec-head h2.lit,.sec-head h2.lit::after{animation:none}}
+  /* ---------- extra animaties ---------- */
+  .member .ico *{transform-box:view-box}
+  .ico-mic{transform-origin:50% 90%}
+  .member:hover .ico-mic,.member:focus-visible .ico-mic{animation:mic .9s ease-in-out infinite}
+  @keyframes mic{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(11deg)}60%{transform:rotate(-7deg)}80%{transform:rotate(4deg)}}
+  .ico-gtr{transform-origin:30% 75%}
+  .member:hover .ico-gtr,.member:focus-visible .ico-gtr{animation:strum .7s ease-in-out infinite}
+  @keyframes strum{0%,100%{transform:rotate(0) translate(0,0)}15%{transform:rotate(-6deg) translate(-1px,1px)}30%{transform:rotate(4deg) translate(1px,-1px)}45%{transform:rotate(-3deg)}60%{transform:rotate(2deg)}75%{transform:rotate(-1deg)}}
+  .ico-keys .k{transition:transform .1s}
+  .member:hover .ico-keys .k,.member:focus-visible .ico-keys .k{animation:key .8s ease-in-out infinite}
+  .ico-keys .k:nth-child(2){animation-delay:.1s!important}.ico-keys .k:nth-child(3){animation-delay:.2s!important}.ico-keys .k:nth-child(4){animation-delay:.3s!important}
+  @keyframes key{0%,30%,100%{transform:translateY(0)}12%{transform:translateY(2.4px)}}
+  .ico-drum .st-l{transform-origin:4px 5.5px}.ico-drum .st-r{transform-origin:20px 5.5px}
+  .member:hover .ico-drum .st-l,.member:focus-visible .ico-drum .st-l{animation:hitl .5s ease-in infinite}
+  .member:hover .ico-drum .st-r,.member:focus-visible .ico-drum .st-r{animation:hitr .5s ease-in infinite;animation-delay:.25s}
+  .member:hover .ico-drum .skin,.member:focus-visible .ico-drum .skin{animation:skin .25s ease-out infinite}
+  @keyframes hitl{0%,100%{transform:rotate(0)}50%{transform:rotate(-28deg)}}
+  @keyframes hitr{0%,100%{transform:rotate(0)}50%{transform:rotate(28deg)}}
+  @keyframes skin{0%{transform:translateY(.6px)}100%{transform:translateY(0)}}
+  .gig.pre{opacity:0;transform:translateX(-140px) rotate(-3deg)}
+  .gig.pre.show{opacity:1;transform:none;transition:opacity .5s ease-out var(--d,0s),transform .75s cubic-bezier(.34,1.56,.64,1) var(--d,0s)}
+  .nav-links a.flash::after{animation:boltflash 1s cubic-bezier(.65,0,.35,1)}
+  .nav-links a.flash{animation:navflash 1s ease-out}
+  @keyframes boltflash{0%{clip-path:inset(0 100% 0 0);transform:scaleY(.4)}40%{clip-path:inset(0 0 0 0);transform:scaleY(1.8);filter:drop-shadow(0 0 8px #FFED00) brightness(1.8)}70%{filter:drop-shadow(0 0 3px #FFED00)}100%{clip-path:inset(0 0 0 0);transform:scaleY(1);filter:none}}
+  @keyframes navflash{0%{text-shadow:none}35%{color:#fff;text-shadow:0 0 14px rgba(255,237,0,.9),0 0 4px rgba(255,237,0,.9)}100%{text-shadow:none}}
+  @media (prefers-reduced-motion: reduce){.member .ico,.member .ico *,.nav-links a.flash,.nav-links a.flash::after{animation:none!important}.gig.pre{opacity:1;transform:none}}
+
+
+
+
+  /* ---------- intro bij openen ---------- */
+  #intro{display:none}
+  html.intro #intro{display:flex;position:fixed;inset:0;z-index:9999;background:#0E0E0E;align-items:center;justify-content:center;cursor:pointer;animation:introFade .8s cubic-bezier(.45,0,.25,1) 1.9s forwards}
+  #intro .stack{display:grid;place-items:center;overflow:visible}
+  #intro .stack > *{grid-area:1/1}
+  #intro .boltwrap{display:grid;filter:drop-shadow(0 0 18px rgba(255,237,0,.5));animation:boltMorph .8s cubic-bezier(.45,0,.25,1) .7s forwards}
+  #intro .bolt{display:block;width:min(9vw,58px);height:auto;fill:#FFED00;clip-path:inset(0 0 100% 0);animation:boltDraw .5s cubic-bezier(.65,0,.35,1) .1s forwards}
+  #intro .logo{width:min(46vw,300px);height:auto;opacity:0;filter:blur(14px);transform:scale(.7);animation:logoMorph .9s cubic-bezier(.33,0,.15,1) .8s forwards,introLogoOut .8s cubic-bezier(.45,0,.25,1) 1.9s forwards}
+  #intro .skip{position:absolute;right:20px;bottom:20px;background:none;border:0;color:rgba(255,255,255,.55);font-family:inherit;font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:12px 14px;min-height:44px;cursor:pointer;opacity:0;animation:skipIn .4s ease-out .3s forwards}
+  #intro .skip:hover{color:#FFED00}
+  @keyframes boltDraw{to{clip-path:inset(0 0 0 0)}}
+  @keyframes boltMorph{0%{transform:scale(1);opacity:1;filter:drop-shadow(0 0 18px rgba(255,237,0,.5)) blur(0)}100%{transform:scale(1.9);opacity:0;filter:drop-shadow(0 0 30px rgba(255,237,0,.6)) blur(10px)}}
+  @keyframes logoMorph{0%{opacity:0;filter:blur(14px);transform:scale(.7)}60%{opacity:1;filter:blur(0) drop-shadow(0 0 22px rgba(255,237,0,.45))}100%{opacity:1;filter:blur(0) drop-shadow(0 0 0 rgba(255,237,0,0));transform:scale(1)}}
+  @keyframes introLogoOut{from{opacity:1;filter:blur(0);transform:scale(1)}to{opacity:0;filter:blur(4px);transform:scale(1.04)}}
+  @keyframes introFade{to{opacity:0;visibility:hidden}}
+  @keyframes skipIn{to{opacity:1}}
+  html.intro .nav{animation:introSoft .9s cubic-bezier(.22,1,.36,1) 2.15s backwards}
+  html.intro .hero-logo{animation:introSoftUp 1s cubic-bezier(.22,1,.36,1) 2.1s backwards}
+  html.intro .hero h1{animation:introSoftUp 1s cubic-bezier(.22,1,.36,1) 2.22s backwards}
+  html.intro .hero-ctas{animation:introSoftUp 1s cubic-bezier(.22,1,.36,1) 2.32s backwards}
+  html.intro .next{animation:introSoftUp 1s cubic-bezier(.22,1,.36,1) 2.4s backwards}
+  html.intro .hero-bg{animation:introBg 1.8s cubic-bezier(.22,1,.36,1) 1.9s backwards}
+  @keyframes introSoft{from{opacity:0}}
+  @keyframes introSoftUp{from{opacity:0;translate:0 26px}}
+  @keyframes introBg{from{scale:1.08;opacity:.4}}
+
+  /* ---------- merch (binnenkort) ---------- */
+  .merch{background:var(--k);position:relative;overflow:hidden}
+  .merch-lead{font-size:clamp(18px,2vw,22px);font-weight:600;margin:0 0 36px;max-width:640px}
+  .merch-lead b{color:var(--y)}
+  .merch-stage{position:relative}
+  .merch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .crate{position:relative;background:#151515;border:2px dashed #3a3a3a;aspect-ratio:4/5;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;cursor:help;transition:border-color .3s}
+  .crate svg{width:68%;height:auto;fill:#2b2b2b;filter:blur(7px);transition:filter .6s ease,transform .6s cubic-bezier(.34,1.56,.64,1)}
+  .crate .q{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:clamp(70px,9vw,120px);color:var(--y);text-shadow:0 0 30px rgba(255,237,0,.35);animation:qflicker 5s infinite}
+  .crate:nth-child(2) .q{animation-delay:1.7s}.crate:nth-child(3) .q{animation-delay:3.1s}
+  .crate .mtag{position:absolute;left:14px;bottom:12px;right:14px;display:flex;justify-content:space-between;font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--m)}
+  .crate .peek{position:absolute;top:12px;left:0;right:0;text-align:center;font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--y);opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s}
+  .crate:hover,.crate:focus-visible{border-color:var(--y)}
+  .crate:hover svg,.crate:focus-visible svg{filter:blur(4px);transform:scale(1.04) rotate(-2deg)}
+  .crate:hover .peek,.crate:focus-visible .peek{opacity:1;transform:none}
+  .crate:hover .q,.crate:focus-visible .q{animation:qshake .5s ease-in-out}
+  @keyframes qflicker{0%,92%,100%{opacity:1}93%{opacity:.25}94%{opacity:1}96%{opacity:.4}97%{opacity:1}}
+  @keyframes qshake{20%{transform:rotate(-8deg)}40%{transform:rotate(7deg)}60%{transform:rotate(-4deg)}80%{transform:rotate(2deg)}}
+  .tape{position:absolute;left:-10%;right:-10%;top:50%;background:var(--y);color:var(--k);border-block:3px solid var(--k);transform:translateY(-50%) rotate(-6deg);overflow:hidden;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+  .tape-track{display:flex;width:max-content;animation:scroll 22s linear infinite}
+  .tape span{font-family:'Anton',sans-serif;font-size:clamp(22px,3vw,34px);text-transform:uppercase;padding:8px 0;white-space:nowrap;display:flex;align-items:center}
+  .tape svg{width:20px;height:30px;margin:0 20px}
+  .merch-foot{margin:36px 0 0;color:var(--m);font-size:16px}
+  .merch-foot a{color:var(--y);font-weight:800}
+  @media (max-width:720px){.merch-grid{grid-template-columns:1fr;gap:14px}.crate{aspect-ratio:16/10}.crate svg{width:42%}.crate .q{font-size:90px}}
+  @media (prefers-reduced-motion: reduce){.crate .q,.tape-track{animation:none}}
 </style>
 </head>
 <body>
+<script>
+  (function () {
+    try {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (sessionStorage.getItem('valzIntro')) return;
+      sessionStorage.setItem('valzIntro', '1');
+    } catch (e) {}
+    document.documentElement.classList.add('intro');
+  })();
+</script>
+<div id="intro" aria-hidden="true">
+  <div class="stack">
+    <div class="boltwrap"><svg class="bolt" viewBox="0 0 56 100"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg></div>
+    <img class="logo" src="img/logo.png" alt="" width="300" height="91">
+  </div>
+  <button class="skip" type="button">Overslaan</button>
+</div>
 
 <a class="sr" href="#main">Naar de inhoud</a>
 
@@ -254,6 +363,7 @@
       <li><a href="#band">Band</a></li>
       <li><a href="#muziek">Muziek</a></li>
       <li><a href="#agenda">Agenda</a></li>
+      <li><a href="#merch">Merch</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -322,23 +432,23 @@
     <div class="members">
       <article class="member reveal" tabindex="0">
         <div><h3>Eijse</h3><p>Leadzang &amp; slaggitaar</p></div>
-        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Zang"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M9 5a3 3 0 0 1 3-3a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3a3 3 0 0 1-3-3z"/><path d="M5 10a7 7 0 0 0 14 0M8 21h8m-4-4v4"/></g></g></svg></div>
+        <div class="icons"><svg class="ico ico-mic" viewBox="0 0 24 24" role="img" aria-label="Zang"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M9 5a3 3 0 0 1 3-3a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3a3 3 0 0 1-3-3z"/><path d="M5 10a7 7 0 0 0 14 0M8 21h8m-4-4v4"/></g></g></svg></div>
       </article>
       <article class="member reveal" tabindex="0">
         <div><h3>Bram</h3><p>Leadgitaar &amp; backing vocals</p></div>
-        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Elektrische gitaar"><path fill="currentColor" d="M23.58 1.18a1.41 1.41 0 0 0-1.46-.34l-4.54 1.51a1.45 1.45 0 0 0-.59.37l-.19.18a1.52 1.52 0 0 0-.44 1.1a1.6 1.6 0 0 0 .15.64l-4.24 4.21a1.36 1.36 0 0 1-.85-.56a1.78 1.78 0 0 1 0-1.43a1.49 1.49 0 0 0-.65-1.72a1.86 1.86 0 0 0-2.31.47a5.86 5.86 0 0 0-1.79 3.64a.5.5 0 0 1-.46.45a6.5 6.5 0 0 0-5.87 3.93c-.86 2.29-.07 4.89 2.16 7.12a7.55 7.55 0 0 0 5.22 2.49a5.3 5.3 0 0 0 1.88-.34a6.58 6.58 0 0 0 4-5.85a.49.49 0 0 1 .45-.47a5.8 5.8 0 0 0 3.64-1.78a1.87 1.87 0 0 0 .47-2.3a1.47 1.47 0 0 0-1.72-.65a1.9 1.9 0 0 1-1.44 0a1.37 1.37 0 0 1-.57-.85l4.25-4.24a1.48 1.48 0 0 0 1.7-.29l3.24-3.24a1.44 1.44 0 0 0-.04-2.05M8.3 19.2l-.36.36a1.5 1.5 0 0 1-2.12 0l-2.13-2.13a1.49 1.49 0 0 1 0-2.12l.36-.31a1.51 1.51 0 0 1 2.12 0l2.13 2.08a1.51 1.51 0 0 1 0 2.12m1.9-3a.75.75 0 0 1-1.06 0L7 14.11a.75.75 0 0 1 0-1.06a.74.74 0 0 1 1.06 0l2.13 2.12a.75.75 0 0 1 .01 1.06Z"/></svg></div>
+        <div class="icons"><svg class="ico ico-gtr" viewBox="0 0 24 24" role="img" aria-label="Elektrische gitaar"><path fill="currentColor" d="M23.58 1.18a1.41 1.41 0 0 0-1.46-.34l-4.54 1.51a1.45 1.45 0 0 0-.59.37l-.19.18a1.52 1.52 0 0 0-.44 1.1a1.6 1.6 0 0 0 .15.64l-4.24 4.21a1.36 1.36 0 0 1-.85-.56a1.78 1.78 0 0 1 0-1.43a1.49 1.49 0 0 0-.65-1.72a1.86 1.86 0 0 0-2.31.47a5.86 5.86 0 0 0-1.79 3.64a.5.5 0 0 1-.46.45a6.5 6.5 0 0 0-5.87 3.93c-.86 2.29-.07 4.89 2.16 7.12a7.55 7.55 0 0 0 5.22 2.49a5.3 5.3 0 0 0 1.88-.34a6.58 6.58 0 0 0 4-5.85a.49.49 0 0 1 .45-.47a5.8 5.8 0 0 0 3.64-1.78a1.87 1.87 0 0 0 .47-2.3a1.47 1.47 0 0 0-1.72-.65a1.9 1.9 0 0 1-1.44 0a1.37 1.37 0 0 1-.57-.85l4.25-4.24a1.48 1.48 0 0 0 1.7-.29l3.24-3.24a1.44 1.44 0 0 0-.04-2.05M8.3 19.2l-.36.36a1.5 1.5 0 0 1-2.12 0l-2.13-2.13a1.49 1.49 0 0 1 0-2.12l.36-.31a1.51 1.51 0 0 1 2.12 0l2.13 2.08a1.51 1.51 0 0 1 0 2.12m1.9-3a.75.75 0 0 1-1.06 0L7 14.11a.75.75 0 0 1 0-1.06a.74.74 0 0 1 1.06 0l2.13 2.12a.75.75 0 0 1 .01 1.06Z"/></svg></div>
       </article>
       <article class="member reveal" tabindex="0">
         <div><h3>Milan</h3><p>Toetsen, accordeon &amp; backing vocals</p></div>
-        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Toetsen"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="1"/><path d="M6 7v6M10 7v6M14 7v6M18 7v6"/></g></svg></div>
+        <div class="icons"><svg class="ico ico-keys" viewBox="0 0 24 24" role="img" aria-label="Toetsen"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="1"/><g><path class="k" d="M6 7v6"/><path class="k" d="M10 7v6"/><path class="k" d="M14 7v6"/><path class="k" d="M18 7v6"/></g></g></svg></div>
       </article>
       <article class="member reveal" tabindex="0">
         <div><h3>Jelte</h3><p>Bas &amp; een beetje geschreeuw</p></div>
-        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Basgitaar"><defs><clipPath id="bc"><polygon points="-5,-12.5 30,22.5 30,30 -5,30"/></clipPath></defs><g transform="translate(0 4.80) scale(0.8)"><g clip-path="url(#bc)"><path fill="currentColor" d="M23.58 1.18a1.41 1.41 0 0 0-1.46-.34l-4.54 1.51a1.45 1.45 0 0 0-.59.37l-.19.18a1.52 1.52 0 0 0-.44 1.1a1.6 1.6 0 0 0 .15.64l-4.24 4.21a1.36 1.36 0 0 1-.85-.56a1.78 1.78 0 0 1 0-1.43a1.49 1.49 0 0 0-.65-1.72a1.86 1.86 0 0 0-2.31.47a5.86 5.86 0 0 0-1.79 3.64a.5.5 0 0 1-.46.45a6.5 6.5 0 0 0-5.87 3.93c-.86 2.29-.07 4.89 2.16 7.12a7.55 7.55 0 0 0 5.22 2.49a5.3 5.3 0 0 0 1.88-.34a6.58 6.58 0 0 0 4-5.85a.49.49 0 0 1 .45-.47a5.8 5.8 0 0 0 3.64-1.78a1.87 1.87 0 0 0 .47-2.3a1.47 1.47 0 0 0-1.72-.65a1.9 1.9 0 0 1-1.44 0a1.37 1.37 0 0 1-.57-.85l4.25-4.24a1.48 1.48 0 0 0 1.7-.29l3.24-3.24a1.44 1.44 0 0 0-.04-2.05M8.3 19.2l-.36.36a1.5 1.5 0 0 1-2.12 0l-2.13-2.13a1.49 1.49 0 0 1 0-2.12l.36-.31a1.51 1.51 0 0 1 2.12 0l2.13 2.08a1.51 1.51 0 0 1 0 2.12m1.9-3a.75.75 0 0 1-1.06 0L7 14.11a.75.75 0 0 1 0-1.06a.74.74 0 0 1 1.06 0l2.13 2.12a.75.75 0 0 1 .01 1.06Z"/></g></g><line x1="9.52" y1="14.48" x2="19.4" y2="4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><g transform="translate(19.4 4.6) rotate(-45)"><path fill="currentColor" d="M-.3-1 H3.7 Q4.7-1 4.7 0 V.2 Q4.7 1.15 3.7 1.15 L1.2 1.7 Q.2 1.9-.3 1.05 Z"/><rect x="0.35" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/><rect x="1.40" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/><rect x="2.45" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/><rect x="3.50" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/></g></svg></div>
+        <div class="icons"><svg class="ico ico-gtr" viewBox="0 0 24 24" role="img" aria-label="Basgitaar"><defs><clipPath id="bc"><polygon points="-5,-12.5 30,22.5 30,30 -5,30"/></clipPath></defs><g transform="translate(0 4.80) scale(0.8)"><g clip-path="url(#bc)"><path fill="currentColor" d="M23.58 1.18a1.41 1.41 0 0 0-1.46-.34l-4.54 1.51a1.45 1.45 0 0 0-.59.37l-.19.18a1.52 1.52 0 0 0-.44 1.1a1.6 1.6 0 0 0 .15.64l-4.24 4.21a1.36 1.36 0 0 1-.85-.56a1.78 1.78 0 0 1 0-1.43a1.49 1.49 0 0 0-.65-1.72a1.86 1.86 0 0 0-2.31.47a5.86 5.86 0 0 0-1.79 3.64a.5.5 0 0 1-.46.45a6.5 6.5 0 0 0-5.87 3.93c-.86 2.29-.07 4.89 2.16 7.12a7.55 7.55 0 0 0 5.22 2.49a5.3 5.3 0 0 0 1.88-.34a6.58 6.58 0 0 0 4-5.85a.49.49 0 0 1 .45-.47a5.8 5.8 0 0 0 3.64-1.78a1.87 1.87 0 0 0 .47-2.3a1.47 1.47 0 0 0-1.72-.65a1.9 1.9 0 0 1-1.44 0a1.37 1.37 0 0 1-.57-.85l4.25-4.24a1.48 1.48 0 0 0 1.7-.29l3.24-3.24a1.44 1.44 0 0 0-.04-2.05M8.3 19.2l-.36.36a1.5 1.5 0 0 1-2.12 0l-2.13-2.13a1.49 1.49 0 0 1 0-2.12l.36-.31a1.51 1.51 0 0 1 2.12 0l2.13 2.08a1.51 1.51 0 0 1 0 2.12m1.9-3a.75.75 0 0 1-1.06 0L7 14.11a.75.75 0 0 1 0-1.06a.74.74 0 0 1 1.06 0l2.13 2.12a.75.75 0 0 1 .01 1.06Z"/></g></g><line x1="9.52" y1="14.48" x2="19.4" y2="4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><g transform="translate(19.4 4.6) rotate(-45)"><path fill="currentColor" d="M-.3-1 H3.7 Q4.7-1 4.7 0 V.2 Q4.7 1.15 3.7 1.15 L1.2 1.7 Q.2 1.9-.3 1.05 Z"/><rect x="0.35" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/><rect x="1.40" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/><rect x="2.45" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/><rect x="3.50" y="-2.2" width=".6" height="1.5" rx=".28" fill="currentColor"/></g></svg></div>
       </article>
       <article class="member reveal" tabindex="0">
         <div><h3>Jimmy</h3><p>Drums</p></div>
-        <div class="icons"><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Drums"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="11" rx="7" ry="2.5"/><path d="M5 11v5c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-5M5 13.8c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5M10 9.5 4 5.5M14 9.5l6-4"/></g></svg></div>
+        <div class="icons"><svg class="ico ico-drum" viewBox="0 0 24 24" role="img" aria-label="Drums"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse class="skin" cx="12" cy="11" rx="7" ry="2.5"/><path d="M5 11v5c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-5M5 13.8c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/><path class="st-l" d="M10 9.5 4 5.5"/><path class="st-r" d="M14 9.5l6-4"/></g></svg></div>
       </article>
     </div>
   </div>
@@ -383,8 +493,42 @@
 
 <!-- FOTO-BAND -->
 <div class="photo-run" role="img" aria-label="Foto's van VALZ live op het podium, die langzaam voorbij schuiven">
-  <div class="photo-track"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-tent.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-tent.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"></div>
+  <div class="photo-track"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"></div>
 </div>
+
+<!-- MERCH -->
+<section id="merch" class="merch">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Er komt iets aan…</span><h2 class="anton">Merch</h2></div>
+    </div>
+    <p class="merch-lead reveal">Geld op de bank? Zonde. <b>Binnenkort ku-j ’t hier kwiet.</b></p>
+    <div class="merch-stage reveal">
+      <div class="merch-grid">
+        <div class="crate" tabindex="0" aria-label="Geheim item 1, binnenkort">
+          <span class="peek">Niet gluren!</span>
+          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 15 42 9q8 9 16 0l12 6 18 15-10 12-8-6v54H30V36l-8 6-10-12z"/></svg>
+          <span class="q" aria-hidden="true">?</span>
+          <span class="mtag"><span>???</span><span>€ ??</span></span>
+        </div>
+        <div class="crate" tabindex="0" aria-label="Geheim item 2, binnenkort">
+          <span class="peek">Hou ’ns op met loeren!</span>
+          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M16 64q1-30 34-32 32 2 33 28v4zM62 62q22-3 34 5-14 8-34 4z"/><circle cx="50" cy="31" r="3"/></svg>
+          <span class="q" aria-hidden="true">?</span>
+          <span class="mtag"><span>???</span><span>€ ??</span></span>
+        </div>
+        <div class="crate" tabindex="0" aria-label="Geheim item 3, binnenkort">
+          <span class="peek">Geduld, sukkel</span>
+          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M33 60q-4-30 17-30t17 30z"/><ellipse cx="50" cy="63" rx="42" ry="9"/></svg>
+          <span class="q" aria-hidden="true">?</span>
+          <span class="mtag"><span>???</span><span>€ ??</span></span>
+        </div>
+      </div>
+      <div class="tape" aria-hidden="true"><div class="tape-track"><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Binnenkort<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span><span>Nog niet kieken<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg></span></div></div>
+    </div>
+    <p class="merch-foot reveal">Als eerste weten wanneer het losgaat? Volg ons op <a href="https://www.instagram.com/valzband/" target="_blank" rel="noopener">Instagram</a>.</p>
+  </div>
+</section>
 
 <!-- CONTACT -->
 <section id="contact">
@@ -417,7 +561,7 @@
     <img src="img/logo.png" alt="VALZ" width="138" height="42">
     <ul class="socials">
       <li><a href="https://open.spotify.com/artist/2zYLGBV3nCSA6yiWZgkFmz" target="_blank" rel="noopener">Spotify</a></li>
-      <li><span>Instagram</span></li>
+      <li><a href="https://www.instagram.com/valzband/" target="_blank" rel="noopener">Instagram</a></li>
       <li><a href="https://www.tiktok.com/@valzband" target="_blank" rel="noopener">TikTok</a></li>
       <li><a href="https://www.facebook.com/ValzBand/" target="_blank" rel="noopener">Facebook</a></li>
       <li><a href="/persmap/">Persmap</a></li>
@@ -435,19 +579,19 @@
   // ---------- agenda (pas hier de optredens aan) ----------
   // datum: JJJJ-MM-DD · titel · plaats/extra · besloten: true = niet openbaar
   const GIGS = [
-    { date: '2026-12-05', title: 'Besloten feest', place: '\'s-Heerenberg', prov: 'Gelderland', besloten: true },
-    { date: '2026-12-11', title: 'Besloten feest', place: 'Stroe', prov: 'Gelderland', besloten: true },
-    { date: '2026-12-19', title: 'Besloten feest', place: 'Drempt', prov: 'Gelderland', besloten: true },
-    { date: '2027-01-16', title: 'Besloten feest', place: 'Toldijk', prov: 'Gelderland', besloten: true },
+    { date: '2026-12-05', title: 'Besloten feest', place: '\'s-Heerenberg', prov: 'Gelderland', besloten: true, quip: 'Je bent van harte niet uitgenodigd.' },
+    { date: '2026-12-11', title: 'Besloten feest', place: 'Stroe', prov: 'Gelderland', besloten: true, quip: 'Lekker niet komen, sukkel!' },
+    { date: '2026-12-19', title: 'Besloten feest', place: 'Drempt', prov: 'Gelderland', besloten: true, quip: 'Geen uitnodiging gehad? Klopt.' },
+    { date: '2027-01-16', title: 'Besloten feest', place: 'Toldijk', prov: 'Gelderland', besloten: true, quip: 'Alleen op uitnodiging. En die heb jij niet.' },
     { date: '2027-03-06', title: 'America', prov: 'Limburg' },
     { date: '2027-03-20', title: 'Kunefest', place: 'Lochem', prov: 'Gelderland' },
     { date: '2027-04-04', title: 'Graafschap kantine', place: 'Doetinchem', prov: 'Gelderland' },
     { date: '2027-04-11', title: 'Piratencafé', place: 'Didam', prov: 'Gelderland' },
     { date: '2027-04-17', title: 'Buurtschapshuis', place: 'Halle', prov: 'Gelderland' },
     { date: '2027-04-26', title: 'Koningsnacht', place: 'Hummelo', prov: 'Gelderland' },
-    { date: '2027-05-16', title: 'Besloten feest', place: 'Lievelde', prov: 'Gelderland', besloten: true },
+    { date: '2027-05-16', title: 'Besloten feest', place: 'Lievelde', prov: 'Gelderland', besloten: true, quip: 'Wil je komen? Nee.' },
     { date: '2027-05-22', title: 'Eventkerk', place: 'Loil', prov: 'Gelderland' },
-    { date: '2027-05-29', title: 'Besloten feest', place: 'Drempt', prov: 'Gelderland', besloten: true },
+    { date: '2027-05-29', title: 'Besloten feest', place: 'Drempt', prov: 'Gelderland', besloten: true, quip: 'Besloten. Jij blijft lekker thuis.' },
     { date: '2027-06-26', title: 'Trekkertrek', place: 'Renswoude', prov: 'Utrecht' }
   ];
   const MONTHS = ['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
@@ -458,21 +602,15 @@
   const list = document.getElementById('gigs');
   let filter = 'alle';
 
-  function ics(g) {
-    const ymd = g.date.replace(/-/g, '');
-    const end = new Date(g.d.getTime() + 86400000);
-    const e = end.getFullYear() + pad(end.getMonth() + 1) + pad(end.getDate());
-    const txt = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//VALZ//Agenda//NL','BEGIN:VEVENT',
-      'UID:' + ymd + '-' + g.title.replace(/\W+/g, '') + '@valz.nl','DTSTAMP:' + ymd + 'T000000Z',
-      'DTSTART;VALUE=DATE:' + ymd,'DTEND;VALUE=DATE:' + e,
-      'SUMMARY:VALZ – ' + g.title,'LOCATION:' + (g.place || ''),'DESCRIPTION:Live: VALZ – dialectrock uit de Achterhoek. valz.nl',
-      'END:VEVENT','END:VCALENDAR'].join('\r\n');
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([txt], { type: 'text/calendar' }));
-    a.download = 'VALZ-' + g.date + '.ics';
-    document.body.appendChild(a); a.click(); a.remove();
-  }
-
+  const gigIO = new IntersectionObserver(es => {
+    let n = 0;
+    es.filter(e => e.isIntersecting).forEach(e => {
+      const g = e.target; gigIO.unobserve(g);
+      g.style.setProperty('--d', (n++ * 0.13) + 's');
+      requestAnimationFrame(() => g.classList.add('show'));
+      setTimeout(() => { g.classList.remove('pre', 'show'); g.style.removeProperty('--d'); }, 1100 + n * 130);
+    });
+  }, { threshold: .3, rootMargin: '0px 0px -60px 0px' });
   function render() {
     list.innerHTML = '';
     const items = upcoming.filter(g => filter === 'alle' || !g.besloten);
@@ -490,20 +628,17 @@
       const metaBits = [[g.place, g.prov].filter(Boolean).join(', ')].filter(Boolean);
       li.innerHTML =
         '<div class="date"><span class="d">' + g.d.getDate() + '</span><span class="m">' + MONTHS[g.d.getMonth()] + '</span></div>' +
-        '<div><h3></h3><p class="meta"></p></div>';
+        '<div><h3></h3><p class="meta"></p>' + (g.quip ? '<p class="quip"></p>' : '') + '</div>';
       li.querySelector('h3').textContent = g.title;
       if (isNext) li.querySelector('h3').insertAdjacentHTML('beforeend', '<span class="tag y">Eerstvolgende</span>');
       if (metaBits.length) li.querySelector('.meta').textContent = metaBits.join(' · '); else li.querySelector('.meta').remove();
+      if (g.quip) li.querySelector('.quip').textContent = g.quip;
       li.setAttribute('aria-label', g.title + ', ' + DAYS[g.d.getDay()] + ' ' + g.d.getDate() + ' ' + MONTHS[g.d.getMonth()] + ' ' + y + (g.place ? ', ' + g.place : ''));
-      if (!g.besloten) {
-        const b = document.createElement('button');
-        b.type = 'button'; b.className = 'ics'; b.textContent = '+ In je agenda';
-        b.setAttribute('aria-label', g.title + ' toevoegen aan je agenda');
-        b.addEventListener('click', () => ics(g));
-        li.appendChild(b);
-      } else { li.appendChild(document.createElement('span')); }
+      li.appendChild(document.createElement('span'));
+      if (!reduce) li.classList.add('pre');
       list.appendChild(li);
     });
+    if (!reduce) list.querySelectorAll('.gig.pre').forEach(g => gigIO.observe(g));
   }
   document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
     filter = c.dataset.f;
@@ -532,10 +667,28 @@
   }
 
   // ---------- marquee ----------
-  const bolt = '<svg viewBox="0 0 48 100" aria-hidden="true"><polygon points="30,0 4,56 22,56 14,100 44,38 26,38 38,0" fill="#0E0E0E"/></svg>';
+  const bolt = '<svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6" fill="#0E0E0E"/></svg>';
   const words = ['VALZ', 'Dialectrock', 'Achterhoek', 'Piratenhits'];
   const run = words.map(w => '<span>' + w + bolt + '</span>').join('').repeat(3);
   document.getElementById('marquee').innerHTML = run + run + run + run;
+
+  // marquee versnelt met scrollen
+  if (!reduce) {
+    const mqAnim = document.getElementById('marquee').getAnimations()[0];
+    let lastY = scrollY, lastT = performance.now(), rate = 1, target = 1;
+    window.addEventListener('scroll', () => {
+      const now = performance.now(), dt = Math.max(16, now - lastT);
+      const v = Math.abs(scrollY - lastY) / dt;
+      target = Math.min(7, 1 + v * 3.2);
+      lastY = scrollY; lastT = now;
+    }, { passive: true });
+    (function tick() {
+      rate += (target - rate) * 0.12;
+      target += (1 - target) * 0.06;
+      if (mqAnim) mqAnim.playbackRate = rate;
+      requestAnimationFrame(tick);
+    })();
+  }
 
   // ---------- nav ----------
   const nav = document.getElementById('nav');
@@ -563,16 +716,28 @@
       else { location.href = a.href; }
     }, reduce ? 0 : 420);
   }));
-  const secs = ['over', 'band', 'muziek', 'agenda', 'contact'].map(id => document.getElementById(id));
+  const secs = ['over', 'band', 'muziek', 'agenda', 'merch', 'contact'].map(id => document.getElementById(id));
   const navA = [...links.querySelectorAll('a[href^="#"]')];
+  let lastCur;
   const setActive = () => {
     const line = innerHeight * 0.4;
     let cur = null;
     secs.forEach(sec => { const r = sec.getBoundingClientRect(); if (r.top <= line && r.bottom > line) cur = sec.id; });
     navA.forEach(a => a.classList.toggle('on', cur !== null && a.getAttribute('href') === '#' + cur));
+    if (cur !== lastCur) {
+      if (cur && !reduce && lastCur !== undefined) {
+        const a = navA.find(x => x.getAttribute('href') === '#' + cur);
+        if (a) { a.classList.remove('flash'); void a.offsetWidth; a.classList.add('flash'); setTimeout(() => a.classList.remove('flash'), 1050); }
+      }
+      lastCur = cur;
+    }
   };
   setActive(); window.addEventListener('scroll', setActive, { passive: true }); window.addEventListener('resize', setActive);
 
+
+  // kopjes: bliksem eronder als ze in beeld komen
+  const h2IO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('lit'); h2IO.unobserve(e.target); } }), { threshold: .8 });
+  document.querySelectorAll('.sec-head h2').forEach(h => reduce ? h.classList.add('lit') : h2IO.observe(h));
   // ---------- reveal bij scrollen ----------
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
@@ -622,6 +787,16 @@
     }, { passive: true });
   }
 })();
+</script>
+<script>
+  (function () {
+    var root = document.documentElement, intro = document.getElementById('intro');
+    if (!intro) return;
+    if (!root.classList.contains('intro')) { intro.remove(); return; }
+    var done = function () { root.classList.remove('intro'); if (intro.parentNode) intro.remove(); ['click', 'keydown', 'wheel', 'touchmove'].forEach(function (t) { window.removeEventListener(t, done, true); }); };
+    ['click', 'keydown', 'wheel', 'touchmove'].forEach(function (t) { window.addEventListener(t, done, { capture: true, passive: true }); });
+    setTimeout(done, 3500);
+  })();
 </script>
 </body>
 </html>
