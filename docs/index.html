@@ -330,6 +330,46 @@
   .merch-foot a{color:var(--y);font-weight:800}
   @media (max-width:720px){.merch-grid{grid-template-columns:1fr;gap:14px}.crate{aspect-ratio:16/10}.crate svg{width:42%}.crate .q{font-size:90px}}
   @media (prefers-reduced-motion: reduce){.crate .q,.tape-track{animation:none}}
+
+  /* ---------- boek-knop ---------- */
+  .nav-logo{order:1}.nav-links{order:2}.book-btn{order:3}.menu-btn{order:4}
+  .nav .wrap .nav-links{margin-left:auto}
+  .book-btn{position:relative;display:inline-flex;align-items:center;gap:8px;background:var(--y);color:var(--k);font-family:'Anton',sans-serif;font-size:17px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:0 16px;min-height:42px;border:2px solid var(--y);transform:skewX(-8deg);overflow:hidden;box-shadow:4px 4px 0 rgba(255,237,0,.25);transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,background .2s,color .2s}
+  .book-btn > *{transform:skewX(8deg)}
+  .book-btn svg{width:11px;height:20px;fill:currentColor;transition:transform .3s}
+  .book-btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:bookShine 4.5s ease-in-out 3s infinite}
+  .book-btn:hover,.book-btn:focus-visible{transform:skewX(-8deg) translateY(-2px) scale(1.05);box-shadow:6px 6px 0 rgba(255,237,0,.35),0 0 22px rgba(255,237,0,.55)}
+  .book-btn:hover svg,.book-btn:focus-visible svg{animation:bookBolt .45s ease-in-out}
+  .book-btn:active{transform:skewX(-8deg) scale(.97)}
+  @keyframes bookShine{0%,70%{left:-60%}100%{left:130%}}
+  @keyframes bookBolt{25%{transform:skewX(8deg) rotate(-18deg) scale(1.2)}60%{transform:skewX(8deg) rotate(12deg) scale(1.15)}}
+  @media (max-width:820px){.book-btn{font-size:15px;padding:0 12px;min-height:40px;margin-left:auto}.nav .wrap{gap:10px}}
+  @media (prefers-reduced-motion: reduce){.book-btn::after{animation:none;display:none}}
+  html.intro .book-btn{animation:introSoft .9s cubic-bezier(.22,1,.36,1) 2.15s backwards}
+
+  /* ---------- boek-popups ---------- */
+  .bm{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+  .bm.open{display:flex;animation:bmFade .2s ease-out}
+  .bm-box{position:relative;width:min(420px,100%);background:var(--k);border:3px solid var(--y);box-shadow:10px 10px 0 var(--y);padding:30px 26px 24px;text-align:center;color:var(--p)}
+  .bm-box.pop{animation:bmPop .45s cubic-bezier(.34,1.56,.64,1)}
+  .bm-box.lvl2{transform:rotate(-2deg)}
+  .bm-box.lvl3{transform:rotate(2deg);border-color:#ff3b30;box-shadow:10px 10px 0 #ff3b30}
+  .bm-box.lvl3.pop{animation:bmPop .45s cubic-bezier(.34,1.56,.64,1),bmShake .5s ease-in-out .45s}
+  .bm-bolt{width:30px;height:54px;fill:var(--y);margin:0 auto 10px;display:block;filter:drop-shadow(0 0 10px rgba(255,237,0,.5))}
+  .lvl3 .bm-bolt{fill:#ff3b30;filter:drop-shadow(0 0 12px rgba(255,59,48,.6))}
+  .bm-title{font-family:'Anton',sans-serif;font-size:clamp(30px,6vw,40px);line-height:1.05;text-transform:uppercase;margin:0 0 8px}
+  .bm-text{margin:0 0 22px;color:var(--m)}
+  .bm-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .bm-btns button{font-family:inherit;font-weight:800;font-size:15px;letter-spacing:1px;text-transform:uppercase;min-height:46px;padding:0 20px;cursor:pointer;border:2px solid var(--y);transition:transform .15s}
+  .bm-yes{background:var(--y);color:var(--k)}
+  .bm-no{background:none;color:var(--y)}
+  .lvl3 .bm-yes{background:#ff3b30;border-color:#ff3b30;color:#fff}
+  .lvl3 .bm-no{border-color:#ff3b30;color:#ff3b30}
+  .bm-btns button:hover{transform:scale(1.06)}
+  @keyframes bmFade{from{opacity:0}}
+  @keyframes bmPop{from{opacity:0;scale:.6;translate:0 30px}}
+  @keyframes bmShake{15%{translate:-10px 0}30%{translate:9px 0}45%{translate:-7px 0}60%{translate:5px 0}75%{translate:-3px 0}}
+  @media (prefers-reduced-motion: reduce){.bm-box.pop,.bm.open{animation:none}}
 </style>
 </head>
 <body>
@@ -356,6 +396,7 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="nav-logo" href="#top" aria-label="VALZ – naar boven"><img src="img/logo.png" alt="VALZ" width="112" height="34"></a>
+    <a class="book-btn" id="bookBtn" href="#contact"><span>Boek ons</span><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">MENU</button>
     <ul class="nav-links" id="navLinks">
       <li class="bolt-bg" aria-hidden="true"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="46,0 92,0 62,38 88,38 30,100 44,58 8,58"/></svg></li>
@@ -368,6 +409,15 @@
     </ul>
   </div>
 </header>
+
+<div class="bm" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="bmTitle">
+  <div class="bm-box">
+    <svg class="bm-bolt" viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>
+    <p class="bm-title" id="bmTitle"></p>
+    <p class="bm-text" id="bmText"></p>
+    <div class="bm-btns"><button type="button" class="bm-yes" id="bmYes"></button><button type="button" class="bm-no" id="bmNo"></button></div>
+  </div>
+</div>
 
 <main id="main">
 
@@ -735,6 +785,41 @@
   setActive(); window.addEventListener('scroll', setActive, { passive: true }); window.addEventListener('resize', setActive);
 
 
+
+
+  // boek-knop: eerst drie keer vragen of je het zeker weet
+  (() => {
+    const btn = document.getElementById('bookBtn'), m = document.getElementById('bookModal');
+    if (!btn || !m) return;
+    const box = m.querySelector('.bm-box'), t = m.querySelector('#bmTitle'), x = m.querySelector('#bmText'), yes = m.querySelector('#bmYes'), no = m.querySelector('#bmNo');
+    const steps = [
+      { t: 'Weet je het zeker?', x: 'Je staat op het punt VALZ te boeken.', y: 'Ja', n: 'Nee' },
+      { t: 'Heel zeker?', x: 'Echt echt? Er is geen weg terug, hè.', y: 'Ja, heel zeker', n: 'Toch maar niet' },
+      { t: 'Je kan niet meer terug!', x: 'Vijf kearls, een accordeon en een hoop herrie. Vanaf hier is het jouw probleem.', y: 'Doe maar!', n: 'Help, nee' }
+    ];
+    let i = 0;
+    const show = () => {
+      const s = steps[i];
+      t.textContent = s.t; x.textContent = s.x; yes.textContent = s.y; no.textContent = s.n;
+      box.className = 'bm-box lvl' + (i + 1); void box.offsetWidth; box.classList.add('pop');
+      m.classList.add('open'); document.body.style.overflow = 'hidden'; yes.focus();
+    };
+    const close = () => { m.classList.remove('open'); document.body.style.overflow = ''; i = 0; btn.focus(); };
+    const go = () => {
+      m.classList.remove('open'); document.body.style.overflow = ''; i = 0;
+      const f = document.getElementById('mailForm');
+      document.getElementById('contact').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      if (f) {
+        const o = f.querySelector('[name="onderwerp"]'); if (o && !o.value) o.value = 'Boeking VALZ';
+        setTimeout(() => { const n = f.querySelector('[name="naam"]'); if (n) n.focus({ preventScroll: true }); }, 700);
+      }
+    };
+    btn.addEventListener('click', e => { e.preventDefault(); i = 0; show(); });
+    yes.addEventListener('click', () => { i++; if (i < steps.length) show(); else go(); });
+    no.addEventListener('click', close);
+    m.addEventListener('click', e => { if (e.target === m) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && m.classList.contains('open')) close(); });
+  })();
   // kopjes: bliksem eronder als ze in beeld komen
   const h2IO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('lit'); h2IO.unobserve(e.target); } }), { threshold: .8 });
   document.querySelectorAll('.sec-head h2').forEach(h => reduce ? h.classList.add('lit') : h2IO.observe(h));
