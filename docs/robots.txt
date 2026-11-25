@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://valz.nl/sitemap.xml

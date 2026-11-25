@@ -10,7 +10,14 @@
 <meta name="description" content="VALZ: vijf jonge honden uit de Achterhoek met dialectrock, piratenhits, Amerikaanse (country)rock en nog meer gekkigheid. Agenda, muziek en contact.">
 <meta property="og:title" content="VALZ – Dialectrock uit de Achterhoek">
 <meta property="og:description" content="Dialectrock, piratenhits en nog meer gekkigheid. Bekijk de agenda en luister onze muziek.">
-<meta property="og:image" content="img/bandfoto.jpg">
+<meta property="og:image" content="https://valz.nl/img/bandfoto.jpg">
+<link rel="canonical" href="https://valz.nl/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://valz.nl/">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="VALZ">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0E0E0E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -197,7 +204,7 @@
   .photo-run::before,.photo-run::after{content:"";position:absolute;top:0;bottom:0;width:12vw;z-index:1;pointer-events:none}
   .photo-run::before{left:0;background:linear-gradient(90deg,var(--k),transparent)}
   .photo-run::after{right:0;background:linear-gradient(270deg,var(--k),transparent)}
-  .photo-track{display:flex;gap:20px;width:max-content;animation:photos 42s linear infinite}
+  .photo-track{display:flex;gap:20px;width:max-content;animation:photos 80s linear infinite}
   .photo-track img{height:clamp(200px,32vw,380px);width:auto;opacity:.6;filter:saturate(.9);flex-shrink:0}
   @keyframes photos{to{transform:translateX(calc(-50% - 10px))}}
   @media (prefers-reduced-motion: reduce){.photo-track{animation:none}}
@@ -231,7 +238,7 @@
   footer small{color:var(--m);display:block;width:100%}
 
   /* cursor-vonken */
-  .spark{position:fixed;width:6px;height:6px;background:var(--y);pointer-events:none;z-index:9999;border-radius:1px}
+  .spark{position:fixed;width:9px;height:16px;margin:-8px 0 0 -4px;background:var(--y);pointer-events:none;z-index:9999;clip-path:polygon(33.9% 0.0%, 95.3% 0.0%, 67.4% 45.4%, 100.0% 45.4%, 3.2% 100.0%, 31.4% 54.6%, 0.0% 54.6%);filter:drop-shadow(0 0 3px rgba(255,237,0,.7))}
 
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
@@ -370,7 +377,58 @@
   @keyframes bmPop{from{opacity:0;scale:.6;translate:0 30px}}
   @keyframes bmShake{15%{translate:-10px 0}30%{translate:9px 0}45%{translate:-7px 0}60%{translate:5px 0}75%{translate:-3px 0}}
   @media (prefers-reduced-motion: reduce){.bm-box.pop,.bm.open{animation:none}}
+
+  /* ---------- tourkaart ---------- */
+  .agenda-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:32px;align-items:start}
+  .tourmap{position:sticky;top:calc(var(--nav) + 24px);background:#0b0b0b;border:2px solid #2c2c2c;overflow:hidden}
+  .tourmap svg{display:block;width:100%;height:auto}
+  .tourmap .nl{fill:#181818;stroke:#3a3a3a;stroke-width:1.5}
+  .tourmap .home{fill:#1f1d0c;stroke:rgba(255,237,0,.45);stroke-width:2}
+  .tourmap .de{fill:#0f0f0f;stroke:#2a2a2a;stroke-width:1.5;stroke-dasharray:6 6}
+  .tourmap .lab{fill:#555;font:800 22px 'Archivo',sans-serif;letter-spacing:3px;text-transform:uppercase;text-anchor:middle;pointer-events:none}
+  .tourmap .lab-de{fill:#333}
+  .pin{cursor:pointer;outline:none}
+  .pin .b{fill:var(--y);stroke:var(--k);stroke-width:8;paint-order:stroke;transform-box:fill-box;transform-origin:0% 100%;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+  .pin.priv .b{fill:#8a8200}
+  .pin:hover .b,.pin:focus-visible .b,.pin.on .b{transform:scale(1.35)}
+  .pin .glow{fill:rgba(255,237,0,.18)}
+  .pin.is-next .glow{animation:pinPulse 1.8s ease-out infinite;transform-box:fill-box;transform-origin:center}
+  .pin.is-next .b{fill:#fff}
+  .pin .cnt{font:800 18px 'Archivo',sans-serif;fill:var(--k);text-anchor:middle}
+  .pin .cntbg{fill:#fff}
+  .pins-in .pin{animation:pinDrop .6s cubic-bezier(.34,1.56,.64,1) backwards}
+  @keyframes pinDrop{from{opacity:0;translate:0 -60px}}
+  @keyframes pinPulse{0%{transform:scale(.6);opacity:1}100%{transform:scale(2.4);opacity:0}}
+  .tm-tip{position:absolute;pointer-events:none;background:var(--y);color:var(--k);padding:10px 12px;font-size:14px;line-height:1.35;box-shadow:5px 5px 0 var(--k);transform:translate(-50%,calc(-100% - 18px));opacity:0;transition:opacity .15s;white-space:nowrap;z-index:2}
+  .tm-tip.show{opacity:1}
+  .tm-tip b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:18px;text-transform:uppercase}
+  .tm-note{position:absolute;left:14px;bottom:10px;margin:0;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#666}
+  .gig.flash-hl{border-color:var(--y);box-shadow:0 0 0 3px rgba(255,237,0,.35)}
+  @media (max-width:900px){.agenda-grid{grid-template-columns:1fr}.tourmap{position:relative;top:0}}
+  @media (prefers-reduced-motion: reduce){.pins-in .pin,.pin.is-next .glow{animation:none}}
+
+  /* ---------- reels ---------- */
+  .reels{overflow:hidden}
+  .reel-links{display:flex;gap:10px;flex-wrap:wrap}
+  .reels-run{position:relative;padding:40px 0 70px}
+  .reels-track{display:flex;width:max-content;padding-left:40px;animation:reelScroll 70s linear infinite}
+  .reels-track:hover,.reels-track:focus-within{animation-play-state:paused}
+  @keyframes reelScroll{to{transform:translateX(-50%)}}
+  .reel{position:relative;flex-shrink:0;width:clamp(150px,17vw,220px);margin-right:-22px;transform:rotate(var(--r)) translateY(var(--ty));transition:transform .35s cubic-bezier(.34,1.56,.64,1);text-decoration:none;color:inherit;z-index:1}
+  .reel:nth-child(odd){z-index:2}
+  .reel .screen{display:block;aspect-ratio:9/16;border:6px solid #111;border-radius:24px;overflow:hidden;background:#111;box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 2px #2c2c2c}
+  .reel video{display:block;width:100%;height:100%;object-fit:cover}
+  .reel .views{position:absolute;top:18px;left:-12px;display:flex;align-items:center;gap:6px;background:var(--y);color:var(--k);font-family:'Anton',sans-serif;font-size:clamp(18px,2vw,24px);padding:4px 12px 4px 10px;transform:rotate(-8deg);box-shadow:3px 3px 0 var(--k);z-index:3}
+  .reel .views svg{width:10px;height:18px;fill:var(--k)}
+  .reel .plat{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(14,14,14,.85);color:var(--p);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 10px;white-space:nowrap;opacity:0;transition:opacity .25s}
+  .reel:hover,.reel:focus-visible{transform:rotate(0) translateY(-14px) scale(1.08);z-index:10}
+  .reel:hover .plat,.reel:focus-visible .plat{opacity:1}
+  .reel:focus-visible .screen{outline:3px solid var(--y);outline-offset:3px}
+  @media (max-width:720px){.reel{width:44vw;margin-right:-14px}.reels-track{animation-duration:55s}.reel .plat{opacity:1}}
+  @media (prefers-reduced-motion: reduce){.reels-run{overflow-x:auto}.reels-track{animation:none}.reel[aria-hidden="true"]{display:none}}
 </style>
+<script data-goatcounter="https://valz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json" id="ldjson">{"@context": "https://schema.org", "@graph": [{"@type": "MusicGroup", "@id": "https://valz.nl/#band", "name": "VALZ", "url": "https://valz.nl/", "genre": ["Dialectrock", "Rock", "Piratenmuziek"], "description": "Vijf jonge honden uit de Achterhoek met dialectrock, piratenhits, Amerikaanse (country)rock en nog meer gekkigheid.", "image": "https://valz.nl/img/bandfoto.jpg", "logo": "https://valz.nl/icon-512.png", "email": "valzbandje@gmail.com", "foundingLocation": {"@type": "Place", "name": "Achterhoek, Gelderland"}, "member": [{"@type": "Person", "name": "Eijse"}, {"@type": "Person", "name": "Bram"}, {"@type": "Person", "name": "Milan"}, {"@type": "Person", "name": "Jelte"}, {"@type": "Person", "name": "Jimmy"}], "sameAs": ["https://open.spotify.com/artist/2zYLGBV3nCSA6yiWZgkFmz", "https://www.instagram.com/valzband/", "https://www.tiktok.com/@valzband", "https://www.facebook.com/ValzBand/"]}, {"@type": "WebSite", "name": "VALZ", "url": "https://valz.nl/"}, {"@type": "MusicEvent", "name": "VALZ live – America", "startDate": "2027-03-06", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "America", "address": {"@type": "PostalAddress", "addressLocality": "America", "addressRegion": "Limburg", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op America in America.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Kunefest (Lochem)", "startDate": "2027-03-20", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Kunefest", "address": {"@type": "PostalAddress", "addressLocality": "Lochem", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Kunefest in Lochem.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Graafschap kantine (Doetinchem)", "startDate": "2027-04-04", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Graafschap kantine", "address": {"@type": "PostalAddress", "addressLocality": "Doetinchem", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Graafschap kantine in Doetinchem.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Piratencafé (Didam)", "startDate": "2027-04-11", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Piratencafé", "address": {"@type": "PostalAddress", "addressLocality": "Didam", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Piratencafé in Didam.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Buurtschapshuis (Halle)", "startDate": "2027-04-17", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Buurtschapshuis", "address": {"@type": "PostalAddress", "addressLocality": "Halle", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Buurtschapshuis in Halle.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Koningsnacht (Hummelo)", "startDate": "2027-04-26", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Koningsnacht", "address": {"@type": "PostalAddress", "addressLocality": "Hummelo", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Koningsnacht in Hummelo.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Eventkerk (Loil)", "startDate": "2027-05-22", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Eventkerk", "address": {"@type": "PostalAddress", "addressLocality": "Loil", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Eventkerk in Loil.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Trekkertrek (Renswoude)", "startDate": "2027-06-26", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Trekkertrek", "address": {"@type": "PostalAddress", "addressLocality": "Renswoude", "addressRegion": "Utrecht", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Trekkertrek in Renswoude.", "url": "https://valz.nl/#agenda"}]}</script>
 </head>
 <body>
 <script>
@@ -522,6 +580,17 @@
   </div>
 </section>
 
+<!-- REELS -->
+<section id="reels" class="reels">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="kicker">Ruim 2 miljoen keer bekeken</span><h2 class="anton">Op ow schermpie</h2></div>
+      <div class="reel-links"><a class="btn" href="https://www.tiktok.com/@valzband" target="_blank" rel="noopener">TikTok</a><a class="btn" href="https://www.instagram.com/valzband/" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+  </div>
+  <div class="reels-run reveal"><div class="reels-track"><a class="reel" href="https://www.instagram.com/p/DVwUUn4DJQj/" target="_blank" rel="noopener" style="--r:-5deg;--ty:10px" aria-label="Jimmy in de rolstoel: 352K views, bekijk op Instagram"><span class="screen"><video src="vid/jimmy.mp4" poster="vid/jimmy.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>352K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.instagram.com/reel/DWo52XFjAHm/" target="_blank" rel="noopener" style="--r:4deg;--ty:-14px" aria-label="Geld en Angst: 477K views, bekijk op Instagram"><span class="screen"><video src="vid/geld-angst-1.mp4" poster="vid/geld-angst-1.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>477K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.instagram.com/reel/DZnNyDqKpou/" target="_blank" rel="noopener" style="--r:-3deg;--ty:18px" aria-label="Kearl slaapt tussen de koeien: 103K views, bekijk op Instagram"><span class="screen"><video src="vid/bed.mp4" poster="vid/bed.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>103K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.tiktok.com/@valzband/video/7614560213592509729" target="_blank" rel="noopener" style="--r:6deg;--ty:-6px" aria-label="Vlog Maarsbergen: 68K views, bekijk op TikTok"><span class="screen"><video src="vid/vlog.mp4" poster="vid/vlog.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>68K</span><span class="plat">TikTok ↗</span></a><a class="reel" href="https://www.instagram.com/reel/DXFI2cUjNnC/" target="_blank" rel="noopener" style="--r:-6deg;--ty:12px" aria-label="Geld en Angst, deel 2: 108K views, bekijk op Instagram"><span class="screen"><video src="vid/geld-angst-2.mp4" poster="vid/geld-angst-2.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>108K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.instagram.com/reel/DZsWX32RfMf/" target="_blank" rel="noopener" style="--r:3deg;--ty:-12px" aria-label="Die numt mien zwak: 124K views, bekijk op Instagram"><span class="screen"><video src="vid/band.mp4" poster="vid/band.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>124K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.tiktok.com/@valzband/video/7637214290864327969" target="_blank" rel="noopener" style="--r:-4deg;--ty:8px" aria-label="De fanclub-auto: 50K views, bekijk op TikTok"><span class="screen"><video src="vid/fanclub.mp4" poster="vid/fanclub.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>50K</span><span class="plat">TikTok ↗</span></a><a class="reel" href="https://www.instagram.com/p/DVwUUn4DJQj/" target="_blank" rel="noopener" style="--r:-5deg;--ty:10px" aria-label="Jimmy in de rolstoel: 352K views, bekijk op Instagram" aria-hidden="true" tabindex="-1"><span class="screen"><video src="vid/jimmy.mp4" poster="vid/jimmy.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>352K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.instagram.com/reel/DWo52XFjAHm/" target="_blank" rel="noopener" style="--r:4deg;--ty:-14px" aria-label="Geld en Angst: 477K views, bekijk op Instagram" aria-hidden="true" tabindex="-1"><span class="screen"><video src="vid/geld-angst-1.mp4" poster="vid/geld-angst-1.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>477K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.instagram.com/reel/DZnNyDqKpou/" target="_blank" rel="noopener" style="--r:-3deg;--ty:18px" aria-label="Kearl slaapt tussen de koeien: 103K views, bekijk op Instagram" aria-hidden="true" tabindex="-1"><span class="screen"><video src="vid/bed.mp4" poster="vid/bed.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>103K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.tiktok.com/@valzband/video/7614560213592509729" target="_blank" rel="noopener" style="--r:6deg;--ty:-6px" aria-label="Vlog Maarsbergen: 68K views, bekijk op TikTok" aria-hidden="true" tabindex="-1"><span class="screen"><video src="vid/vlog.mp4" poster="vid/vlog.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>68K</span><span class="plat">TikTok ↗</span></a><a class="reel" href="https://www.instagram.com/reel/DXFI2cUjNnC/" target="_blank" rel="noopener" style="--r:-6deg;--ty:12px" aria-label="Geld en Angst, deel 2: 108K views, bekijk op Instagram" aria-hidden="true" tabindex="-1"><span class="screen"><video src="vid/geld-angst-2.mp4" poster="vid/geld-angst-2.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>108K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.instagram.com/reel/DZsWX32RfMf/" target="_blank" rel="noopener" style="--r:3deg;--ty:-12px" aria-label="Die numt mien zwak: 124K views, bekijk op Instagram" aria-hidden="true" tabindex="-1"><span class="screen"><video src="vid/band.mp4" poster="vid/band.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>124K</span><span class="plat">Instagram ↗</span></a><a class="reel" href="https://www.tiktok.com/@valzband/video/7637214290864327969" target="_blank" rel="noopener" style="--r:-4deg;--ty:8px" aria-label="De fanclub-auto: 50K views, bekijk op TikTok" aria-hidden="true" tabindex="-1"><span class="screen"><video src="vid/fanclub.mp4" poster="vid/fanclub.jpg" muted loop playsinline preload="none"></video></span><span class="views"><svg viewBox="0 0 56 100" aria-hidden="true"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg>50K</span><span class="plat">TikTok ↗</span></a></div></div>
+</section>
+
 <!-- AGENDA -->
 <section id="agenda" class="agenda">
   <div class="wrap">
@@ -532,7 +601,10 @@
         <button class="chip" type="button" aria-pressed="false" data-f="open">Openbaar</button>
       </div>
     </div>
-    <ul class="gigs" id="gigs"></ul>
+    <div class="agenda-grid">
+      <div class="tourmap reveal" id="tourmap"><svg viewBox="0 0 1000 1068" role="img" aria-label="Kaart met de plaatsen waar VALZ speelt"><g class="regions"><path class="de" d="M1013.7,-1.3L1000.9,11.9L970.7,17.2L877.2,-3.5L861.7,-11.0L850.0,-24.4L846.0,-47.7L1029.4,-47.7L1029.4,24.0L1013.7,-1.3Z"/><path class="de" d="M929.8,321.4L961.7,276.1L986.9,265.1L1018.8,225.0L1029.4,218.5L1029.4,1115.4L508.7,1115.4L528.1,1079.0L549.2,1062.3L558.2,1042.0L563.4,1012.7L554.5,1002.0L562.0,945.3L554.9,896.8L492.0,814.6L489.5,802.9L499.5,767.9L459.7,750.3L446.2,732.9L454.1,705.9L448.3,699.9L428.4,686.6L405.5,684.6L406.0,674.4L419.0,661.3L420.1,642.0L412.2,623.6L398.8,613.2L400.9,604.7L490.6,568.5L533.0,579.6L495.9,538.3L515.9,527.4L573.6,560.0L596.9,556.6L610.2,575.7L642.3,584.7L644.1,599.5L666.2,593.4L668.6,583.9L663.8,562.3L713.5,573.6L752.1,546.8L810.7,526.7L862.8,525.0L878.7,516.4L892.4,500.0L905.8,475.6L918.1,466.6L918.6,454.9L898.9,427.8L838.2,395.8L837.0,381.3L841.1,371.4L859.6,364.8L882.3,330.9L929.8,321.4Z"/><path class="de" d="M-20.6,1101.7L-20.5,1115.4L-29.4,1115.4L-29.4,1090.4L-20.6,1101.7Z"/><path class="de" d="M115.9,1115.4L130.4,1107.7L152.8,1115.4L115.9,1115.4Z"/><path class="nl" d="M846.0,-47.7L850.0,-24.4L861.7,-11.0L954.1,14.6L986.2,16.2L1000.9,11.9L1013.7,-1.3L1029.4,24.0L1029.4,218.5L1018.8,225.0L986.9,265.1L961.7,276.1L929.8,321.4L895.0,325.3L830.5,307.6L836.4,293.3L835.9,278.8L825.6,268.4L797.7,271.8L789.3,258.0L732.5,260.1L715.2,243.6L683.2,195.8L665.7,193.7L630.9,210.2L593.7,210.8L546.8,202.4L532.0,213.9L524.7,204.9L525.9,191.8L514.1,184.7L514.4,170.7L503.8,143.3L491.8,137.7L481.2,122.2L487.1,94.4L492.5,86.3L489.2,75.7L511.8,66.4L521.3,32.8L507.0,9.7L497.3,-17.1L473.6,-47.7L846.0,-47.7ZM423.3,-33.3L400.8,-29.2L389.1,-47.7L440.3,-47.7L423.3,-33.3Z"/><path class="nl" d="M409.4,670.9L405.5,684.6L428.4,686.6L454.1,705.9L446.2,732.9L459.7,750.3L499.5,767.9L489.5,802.9L492.0,814.6L554.9,896.8L562.0,945.3L554.5,1002.0L563.4,1012.7L555.0,1053.9L528.1,1079.0L508.7,1115.4L227.4,1115.4L250.4,1080.7L367.7,1044.8L402.6,1015.4L388.3,984.5L368.2,956.3L354.9,901.8L345.7,841.8L396.2,851.7L440.9,838.9L461.0,850.5L470.2,842.3L470.3,834.6L456.5,790.6L430.7,757.1L434.7,747.9L425.5,737.6L417.6,703.2L408.5,695.8L375.4,687.4L370.4,675.7L372.2,664.2L360.5,658.4L360.7,645.6L376.4,641.3L391.7,661.5L409.4,670.9Z"/><path class="nl" d="M40.0,669.8L61.6,655.3L69.1,643.1L77.1,608.6L88.8,602.3L112.6,604.1L147.5,586.3L167.4,596.9L205.0,591.0L231.3,597.0L241.9,619.5L300.0,655.3L360.5,658.4L372.2,664.2L370.4,675.7L375.4,687.4L408.5,695.8L417.6,703.2L425.5,737.6L434.7,747.9L430.7,757.1L456.5,790.6L470.2,842.3L461.0,850.5L440.9,838.9L396.2,851.7L345.7,841.8L354.9,901.8L368.2,956.3L388.3,984.5L402.6,1015.4L367.7,1044.8L250.4,1080.7L227.4,1115.4L152.8,1115.4L130.4,1107.7L115.9,1115.4L-20.5,1115.4L-20.6,1101.7L-29.4,1090.4L-29.4,677.5L40.0,669.8Z"/><path class="nl" d="M-29.4,120.3L19.3,125.4L69.2,158.9L8.1,166.0L-29.4,251.2L-29.4,120.3Z"/><path class="nl" d="M356.0,-29.2L332.5,8.8L306.5,34.5L238.0,65.3L193.6,100.3L166.3,165.1L103.5,177.4L19.3,125.4L-0.7,119.2L-29.4,120.3L-29.4,-47.7L360.9,-47.7L356.0,-29.2Z"/><path class="nl" d="M93.4,174.3L86.4,219.4L111.0,242.2L109.8,251.6L102.4,261.8L106.0,268.3L132.1,275.6L154.6,299.1L152.0,320.8L145.7,320.3L135.9,343.4L128.6,350.5L147.1,362.5L152.5,360.5L167.7,350.5L171.3,338.4L168.8,331.3L178.4,329.1L185.2,359.1L184.4,381.9L189.6,410.8L215.6,450.2L215.1,478.3L195.4,473.5L150.0,446.2L124.7,440.8L100.2,453.8L78.1,447.9L65.1,450.9L35.6,467.4L2.6,449.0L-29.4,461.5L-29.4,251.2L-2.6,183.8L8.1,166.0L15.4,162.7L68.3,159.1L93.4,174.3Z"/><path class="home" d="M895.0,325.3L872.3,341.3L859.6,364.8L841.1,371.4L837.0,381.3L838.2,395.8L898.9,427.8L917.2,448.5L918.1,466.6L905.8,475.6L878.7,516.4L862.8,525.0L810.7,526.7L752.1,546.8L713.5,573.6L663.8,562.3L668.6,583.9L666.2,593.4L644.1,599.5L642.3,584.7L610.2,575.7L596.9,556.6L573.6,560.0L515.9,527.4L495.9,538.3L533.0,579.6L490.6,568.5L400.9,604.7L398.8,613.2L412.2,623.6L420.1,642.0L419.0,661.3L406.7,671.8L389.6,659.6L376.4,641.3L360.7,645.6L360.5,658.4L300.0,655.3L241.9,619.5L231.3,597.0L205.0,591.0L167.4,596.9L147.5,586.3L112.6,604.1L88.8,602.3L77.1,608.6L69.1,643.1L51.2,664.1L-29.4,677.5L-29.4,461.5L2.6,449.0L35.6,467.4L65.1,450.9L78.1,447.9L100.2,453.8L124.7,440.8L150.0,446.2L195.4,473.5L215.1,478.3L217.2,473.8L215.6,450.2L189.6,410.8L184.4,381.9L185.2,359.1L178.4,329.1L168.8,331.3L171.3,338.4L167.7,350.5L152.5,360.5L147.1,362.5L128.6,350.5L135.9,343.4L145.7,320.3L152.0,320.8L154.6,299.1L132.1,275.6L106.0,268.3L102.4,261.8L109.8,251.6L111.0,242.2L86.4,219.4L93.5,173.8L103.5,177.4L166.3,165.1L193.6,100.3L222.1,74.6L306.5,34.5L321.1,22.2L356.0,-29.2L360.9,-47.7L389.1,-47.7L397.1,-32.4L405.5,-28.0L423.3,-33.3L440.3,-47.7L473.6,-47.7L497.3,-17.1L507.0,9.7L520.5,29.8L520.5,43.4L511.8,66.4L489.2,75.7L492.5,86.3L487.1,94.4L481.2,122.2L491.8,137.7L503.8,143.3L514.4,170.7L514.1,184.7L525.9,191.8L524.7,204.9L532.0,213.9L546.8,202.4L593.7,210.8L630.9,210.2L665.7,193.7L683.2,195.8L715.2,243.6L732.5,260.1L789.3,258.0L797.7,271.8L825.6,268.4L835.9,278.8L836.4,293.3L830.5,307.6L895.0,325.3Z"/></g><g class="labels"><text x="721" y="668" class="lab lab-de">Duitsland</text><text x="764" y="140" class="lab">Overijssel</text><text x="444" y="874" class="lab">Limburg</text><text x="159" y="851" class="lab">Noord-Brabant</text><text x="121" y="50" class="lab">Flevoland</text><text x="62" y="310" class="lab">Utrecht</text><text x="503" y="314" class="lab">Gelderland</text></g><g id="pins"></g></svg><div class="tm-tip" id="tmTip" aria-hidden="true"></div><p class="tm-note">Tik op een bliksem</p></div>
+      <ul class="gigs" id="gigs"></ul>
+    </div>
     <p id="noGigs" hidden>Er staan op dit moment geen optredens gepland. Hou onze socials in de gaten!</p>
     <div class="agenda-cta reveal">
       <p>Zelf een feest, kroeg of tent die nog een band mist?</p>
@@ -543,7 +615,7 @@
 
 <!-- FOTO-BAND -->
 <div class="photo-run" role="img" aria-label="Foto's van VALZ live op het podium, die langzaam voorbij schuiven">
-  <div class="photo-track"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"></div>
+  <div class="photo-track"><img src="img/live-stro.jpg" alt="" loading="lazy"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-eijse-lach.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-milan.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/live-cowboy.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-eijse-zang.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"><img src="img/live-stro.jpg" alt="" loading="lazy"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-eijse-lach.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-milan.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/live-cowboy.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-eijse-zang.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"></div>
 </div>
 
 <!-- MERCH -->
@@ -630,7 +702,7 @@
   // datum: JJJJ-MM-DD · titel · plaats/extra · besloten: true = niet openbaar
   const GIGS = [
     { date: '2026-12-05', title: 'Besloten feest', place: '\'s-Heerenberg', prov: 'Gelderland', besloten: true, quip: 'Je bent van harte niet uitgenodigd.' },
-    { date: '2026-12-11', title: 'Besloten feest', place: 'Stroe', prov: 'Gelderland', besloten: true, quip: 'Lekker niet komen, sukkel!' },
+    { date: '2026-12-11', title: 'Besloten feest', place: 'Stroe', prov: 'Gelderland', besloten: true, quip: 'Besloten, volgende keer beter.' },
     { date: '2026-12-19', title: 'Besloten feest', place: 'Drempt', prov: 'Gelderland', besloten: true, quip: 'Geen uitnodiging gehad? Klopt.' },
     { date: '2027-01-16', title: 'Besloten feest', place: 'Toldijk', prov: 'Gelderland', besloten: true, quip: 'Alleen op uitnodiging. En die heb jij niet.' },
     { date: '2027-03-06', title: 'America', prov: 'Limburg' },
@@ -661,9 +733,64 @@
       setTimeout(() => { g.classList.remove('pre', 'show'); g.style.removeProperty('--d'); }, 1100 + n * 130);
     });
   }, { threshold: .3, rootMargin: '0px 0px -60px 0px' });
+
+  // ---------- tourkaart ----------
+  const PLACES = {
+    "'s-Heerenberg": [51.876, 6.248], 'Stroe': [52.180, 5.705], 'Drempt': [52.024, 6.136], 'Toldijk': [52.051, 6.247],
+    'America': [51.437, 5.980], 'Lochem': [52.160, 6.415], 'Doetinchem': [51.965, 6.288], 'Didam': [51.940, 6.131],
+    'Halle': [51.987, 6.446], 'Hummelo': [52.003, 6.228], 'Lievelde': [51.996, 6.600], 'Loil': [51.928, 6.098], 'Renswoude': [52.073, 5.541]
+  };
+  const MAP = { lon0: 5.25, lat1: 52.45, k: 0.617036, sx: 953.3243 };
+  const proj = ([lat, lon]) => [(lon - MAP.lon0) * MAP.k * MAP.sx, (MAP.lat1 - lat) * MAP.sx];
+  const pinsG = document.getElementById('pins'), tip = document.getElementById('tmTip'), tmap = document.getElementById('tourmap');
+  const fmtD = d => d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' });
+  function drawPins(items) {
+    if (!pinsG) return;
+    pinsG.innerHTML = '';
+    const byPlace = {};
+    items.forEach(g => { const p = g.place || g.title; if (PLACES[p]) (byPlace[p] = byPlace[p] || []).push(g); });
+    Object.entries(byPlace).sort((a, b) => PLACES[b[0]][0] - PLACES[a[0]][0]).forEach(([place, gs], i) => {
+      const [x, y] = proj(PLACES[place]);
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'pin' + (gs.every(x => x.besloten) ? ' priv' : '') + (gs.includes(upcoming[0]) ? ' is-next' : ''));
+      g.setAttribute('tabindex', '0'); g.setAttribute('role', 'button');
+      g.setAttribute('aria-label', place + ': ' + gs.map(x => fmtD(x.d) + ' ' + x.title).join(', '));
+      g.style.animationDelay = (i * 0.07) + 's';
+      g.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')');
+      g.innerHTML = '<circle class="glow" r="16"/>' +
+        '<g class="b"><polygon transform="translate(-0.8 -46) scale(.46)" points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></g>' +
+        (gs.length > 1 ? '<circle class="cntbg" cx="30" cy="-44" r="13"/><text class="cnt" x="30" y="-38">' + gs.length + '</text>' : '');
+      const showTip = () => {
+        const r = tmap.getBoundingClientRect(), s = r.width / 1000;
+        tip.innerHTML = '';
+        const b = document.createElement('b'); b.textContent = place; tip.appendChild(b);
+        gs.forEach(x => { const l = document.createElement('div'); l.textContent = fmtD(x.d) + ' · ' + x.title; tip.appendChild(l); });
+        let left = x * s; left = Math.max(110, Math.min(r.width - 110, left));
+        tip.style.left = left + 'px'; tip.style.top = (y - 46) * s + 'px'; tip.classList.add('show');
+        pinsG.querySelectorAll('.pin.on').forEach(p => p.classList.remove('on')); g.classList.add('on');
+      };
+      const hideTip = () => { tip.classList.remove('show'); g.classList.remove('on'); };
+      g.addEventListener('mouseenter', showTip); g.addEventListener('mouseleave', hideTip);
+      g.addEventListener('focus', showTip); g.addEventListener('blur', hideTip);
+      g.addEventListener('click', () => {
+        showTip();
+        const li = [...document.querySelectorAll('#gigs .gig')].find(l => l.dataset.date === gs[0].date);
+        if (li && window.matchMedia('(min-width: 901px)').matches) {
+          li.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+          li.classList.add('flash-hl'); setTimeout(() => li.classList.remove('flash-hl'), 1600);
+        }
+      });
+      pinsG.appendChild(g);
+    });
+  }
+  if (tmap && !reduce) {
+    const mio = new IntersectionObserver(es => { if (es[0].isIntersecting) { tmap.classList.add('pins-in'); drawPins(upcoming.filter(g => filter === 'alle' || !g.besloten)); mio.disconnect(); } }, { threshold: .3 });
+    mio.observe(tmap);
+  }
   function render() {
     list.innerHTML = '';
     const items = upcoming.filter(g => filter === 'alle' || !g.besloten);
+    drawPins(items);
     document.getElementById('noGigs').hidden = items.length > 0;
     let lastYear = null;
     items.forEach((g, i) => {
@@ -673,6 +800,7 @@
         lastYear = y;
       }
       const li = document.createElement('li');
+      li.dataset.date = g.date;
       const isNext = g === upcoming[0];
       li.className = 'gig' + (isNext ? ' first' : '');
       const metaBits = [[g.place, g.prov].filter(Boolean).join(', ')].filter(Boolean);
@@ -820,6 +948,17 @@
     m.addEventListener('click', e => { if (e.target === m) close(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && m.classList.contains('open')) close(); });
   })();
+
+  // reels: video's alleen afspelen als ze in beeld zijn
+  (() => {
+    const vids = document.querySelectorAll('.reel video');
+    if (!vids.length || reduce) return;
+    const vio = new IntersectionObserver(es => es.forEach(e => {
+      const v = e.target;
+      if (e.isIntersecting) { v.preload = 'auto'; const p = v.play(); if (p) p.catch(() => {}); } else v.pause();
+    }), { rootMargin: '100px' });
+    vids.forEach(v => vio.observe(v));
+  })();
   // kopjes: bliksem eronder als ze in beeld komen
   const h2IO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('lit'); h2IO.unobserve(e.target); } }), { threshold: .8 });
   document.querySelectorAll('.sec-head h2').forEach(h => reduce ? h.classList.add('lit') : h2IO.observe(h));
@@ -867,7 +1006,8 @@
       s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
       document.body.appendChild(s);
       const dx = (Math.random() - .5) * 40, dy = 20 + Math.random() * 30;
-      s.animate([{ transform: 'translate(0,0) rotate(0)', opacity: 1 }, { transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(180deg)', opacity: 0 }],
+      const r0 = (Math.random() - .5) * 30, r1 = r0 + (Math.random() - .5) * 50, sc = .8 + Math.random() * .6;
+      s.animate([{ transform: 'translate(0,0) rotate(' + r0 + 'deg) scale(' + sc + ')', opacity: 1 }, { transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(' + r1 + 'deg) scale(' + (sc * .6) + ')', opacity: 0 }],
         { duration: 600, easing: 'ease-out' }).onfinish = () => s.remove();
     }, { passive: true });
   }
