@@ -96,8 +96,60 @@
 </style>
 <link rel="canonical" href="https://valz.nl/persmap/">
 <script data-goatcounter="https://valz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style id="pt-css">
+  #pt{position:fixed;inset:0;z-index:10000;pointer-events:none;overflow:hidden;display:none}
+  #pt.on{display:block;pointer-events:auto}
+  #pt .pt-slab{position:absolute;top:-10vh;bottom:-10vh;left:-30vw;width:160vw;background:#0E0E0E;transform:translateX(110%) skewX(-14deg);box-shadow:-14px 0 0 #FFED00,-28px 0 0 rgba(255,237,0,.35)}
+  #pt .pt-bolt{position:absolute;left:50%;top:50%;width:min(14vw,80px);height:auto;fill:#FFED00;transform:translate(-50%,-50%) scale(.3);opacity:0;filter:drop-shadow(0 0 22px rgba(255,237,0,.55))}
+  #pt.out .pt-slab{animation:ptIn .55s cubic-bezier(.7,0,.25,1) forwards}
+  #pt.out .pt-bolt{animation:ptBoltIn .45s cubic-bezier(.34,1.56,.64,1) .3s forwards}
+  #pt.arrive .pt-slab{transform:translateX(0) skewX(-14deg);animation:ptOut .7s cubic-bezier(.7,0,.25,1) .15s forwards}
+  #pt.arrive .pt-bolt{opacity:1;transform:translate(-50%,-50%) scale(1);animation:ptBoltOut .35s ease-in forwards}
+  @keyframes ptIn{to{transform:translateX(0) skewX(-14deg)}}
+  @keyframes ptOut{to{transform:translateX(-120%) skewX(-14deg)}}
+  @keyframes ptBoltIn{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+  @keyframes ptBoltOut{to{opacity:0;transform:translate(-50%,-50%) scale(1.6);filter:blur(6px)}}
+  html.pt-arrive #pt{display:block}
+  html.pt-arrive #pt .pt-slab{transform:translateX(0) skewX(-14deg)}
+  @media (prefers-reduced-motion: reduce){#pt{display:none!important}}
+</style>
+<script>
+  (function () {
+    try { if (sessionStorage.getItem('valzPT') && !matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('pt-arrive'); sessionStorage.setItem('valzIntro', '1'); } } catch (e) {}
+  })();
+</script>
 </head>
 <body>
+<div id="pt" aria-hidden="true"><div class="pt-slab"></div><svg class="pt-bolt" viewBox="0 0 56 100"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg></div>
+<script>
+  (function () {
+    var pt = document.getElementById('pt'), root = document.documentElement;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (root.classList.contains('pt-arrive')) {
+      try { sessionStorage.removeItem('valzPT'); sessionStorage.setItem('valzIntro', '1'); } catch (e) {}
+      root.classList.remove('intro'); var ii = document.getElementById('intro'); if (ii) ii.remove();
+      pt.className = 'on arrive';
+      setTimeout(function () { pt.className = ''; root.classList.remove('pt-arrive'); }, 950);
+    }
+    var isOther = function (a) {
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return false;
+      var u = new URL(a.href, location.href);
+      if (u.origin !== location.origin) return false;
+      var here = location.pathname.indexOf('/persmap') === 0, there = u.pathname.indexOf('/persmap') === 0;
+      return here !== there;
+    };
+    document.addEventListener('click', function (e) {
+      if (reduce || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!isOther(a)) return;
+      e.preventDefault();
+      try { sessionStorage.setItem('valzPT', '1'); } catch (er) {}
+      pt.className = 'on out';
+      setTimeout(function () { location.href = a.href; }, 700);
+    });
+    window.addEventListener('pageshow', function (e) { if (e.persisted) pt.className = ''; });
+  })();
+</script>
 <div class="wrap">
   <p style="margin:0;padding-top:8px"><a class="home-link" href="/" style="color:var(--y);font-weight:800;text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;font-size:14px">&larr; Naar valz.nl</a></p>
   <header>

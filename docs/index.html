@@ -340,6 +340,13 @@
   @media (max-width:720px){.merch-grid{grid-template-columns:1fr;gap:14px}.crate{aspect-ratio:16/10}.crate svg{width:42%}.crate .q{font-size:90px}}
   @media (prefers-reduced-motion: reduce){.crate .q,.tape-track{animation:none}}
 
+
+  /* reels: zelf scrollen + automatisch doorlopen */
+  .reels-run{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;overscroll-behavior-x:contain}
+  .reels-run::-webkit-scrollbar{display:none}
+  .reels-run.dragging{cursor:grabbing}
+  .reels-run.dragging .reel{pointer-events:none}
+  .reels-track{animation:none!important;padding:0 24px}
   /* ---------- boek-knop ---------- */
   .nav-logo{order:1}.nav-links{order:2}.book-btn{order:3}.menu-btn{order:4}
   .nav .wrap .nav-links{margin-left:auto}
@@ -433,8 +440,60 @@
 </style>
 <script data-goatcounter="https://valz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json" id="ldjson">{"@context": "https://schema.org", "@graph": [{"@type": "MusicGroup", "@id": "https://valz.nl/#band", "name": "VALZ", "url": "https://valz.nl/", "genre": ["Dialectrock", "Rock", "Piratenmuziek"], "description": "Vijf jonge honden uit de Achterhoek met dialectrock, piratenhits, Amerikaanse (country)rock en nog meer gekkigheid.", "image": "https://valz.nl/img/bandfoto.jpg", "logo": "https://valz.nl/icon-512.png", "email": "valzbandje@gmail.com", "foundingLocation": {"@type": "Place", "name": "Achterhoek, Gelderland"}, "member": [{"@type": "Person", "name": "Eijse Luimes"}, {"@type": "Person", "name": "Bram Hetterscheid"}, {"@type": "Person", "name": "Milan Heuveling"}, {"@type": "Person", "name": "Jelte Bremer"}, {"@type": "Person", "name": "Jimmy Larink"}], "sameAs": ["https://open.spotify.com/artist/2zYLGBV3nCSA6yiWZgkFmz", "https://www.instagram.com/valzband/", "https://www.tiktok.com/@valzband", "https://www.facebook.com/ValzBand/"]}, {"@type": "WebSite", "name": "VALZ", "url": "https://valz.nl/"}, {"@type": "MusicEvent", "name": "VALZ live – America", "startDate": "2027-03-06", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "America", "address": {"@type": "PostalAddress", "addressLocality": "America", "addressRegion": "Limburg", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op America in America.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Kunefest (Lochem)", "startDate": "2027-03-20", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Kunefest", "address": {"@type": "PostalAddress", "addressLocality": "Lochem", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Kunefest in Lochem.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Graafschap kantine (Doetinchem)", "startDate": "2027-04-04", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Graafschap kantine", "address": {"@type": "PostalAddress", "addressLocality": "Doetinchem", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Graafschap kantine in Doetinchem.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Piratencafé (Didam)", "startDate": "2027-04-11", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Piratencafé", "address": {"@type": "PostalAddress", "addressLocality": "Didam", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Piratencafé in Didam.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Buurtschapshuis (Halle)", "startDate": "2027-04-17", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Buurtschapshuis", "address": {"@type": "PostalAddress", "addressLocality": "Halle", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Buurtschapshuis in Halle.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Koningsnacht (Hummelo)", "startDate": "2027-04-26", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Koningsnacht", "address": {"@type": "PostalAddress", "addressLocality": "Hummelo", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Koningsnacht in Hummelo.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Eventkerk (Loil)", "startDate": "2027-05-22", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Eventkerk", "address": {"@type": "PostalAddress", "addressLocality": "Loil", "addressRegion": "Gelderland", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Eventkerk in Loil.", "url": "https://valz.nl/#agenda"}, {"@type": "MusicEvent", "name": "VALZ live – Trekkertrek (Renswoude)", "startDate": "2027-06-26", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Trekkertrek", "address": {"@type": "PostalAddress", "addressLocality": "Renswoude", "addressRegion": "Utrecht", "addressCountry": "NL"}}, "performer": {"@id": "https://valz.nl/#band"}, "image": ["https://valz.nl/img/bandfoto.jpg"], "description": "VALZ speelt dialectrock en piratenhits op Trekkertrek in Renswoude.", "url": "https://valz.nl/#agenda"}]}</script>
+<style id="pt-css">
+  #pt{position:fixed;inset:0;z-index:10000;pointer-events:none;overflow:hidden;display:none}
+  #pt.on{display:block;pointer-events:auto}
+  #pt .pt-slab{position:absolute;top:-10vh;bottom:-10vh;left:-30vw;width:160vw;background:#0E0E0E;transform:translateX(110%) skewX(-14deg);box-shadow:-14px 0 0 #FFED00,-28px 0 0 rgba(255,237,0,.35)}
+  #pt .pt-bolt{position:absolute;left:50%;top:50%;width:min(14vw,80px);height:auto;fill:#FFED00;transform:translate(-50%,-50%) scale(.3);opacity:0;filter:drop-shadow(0 0 22px rgba(255,237,0,.55))}
+  #pt.out .pt-slab{animation:ptIn .55s cubic-bezier(.7,0,.25,1) forwards}
+  #pt.out .pt-bolt{animation:ptBoltIn .45s cubic-bezier(.34,1.56,.64,1) .3s forwards}
+  #pt.arrive .pt-slab{transform:translateX(0) skewX(-14deg);animation:ptOut .7s cubic-bezier(.7,0,.25,1) .15s forwards}
+  #pt.arrive .pt-bolt{opacity:1;transform:translate(-50%,-50%) scale(1);animation:ptBoltOut .35s ease-in forwards}
+  @keyframes ptIn{to{transform:translateX(0) skewX(-14deg)}}
+  @keyframes ptOut{to{transform:translateX(-120%) skewX(-14deg)}}
+  @keyframes ptBoltIn{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+  @keyframes ptBoltOut{to{opacity:0;transform:translate(-50%,-50%) scale(1.6);filter:blur(6px)}}
+  html.pt-arrive #pt{display:block}
+  html.pt-arrive #pt .pt-slab{transform:translateX(0) skewX(-14deg)}
+  @media (prefers-reduced-motion: reduce){#pt{display:none!important}}
+</style>
+<script>
+  (function () {
+    try { if (sessionStorage.getItem('valzPT') && !matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('pt-arrive'); sessionStorage.setItem('valzIntro', '1'); } } catch (e) {}
+  })();
+</script>
 </head>
 <body>
+<div id="pt" aria-hidden="true"><div class="pt-slab"></div><svg class="pt-bolt" viewBox="0 0 56 100"><polygon points="18.9,0 53.2,0 37.6,45.4 55.8,45.4 1.8,100 17.5,54.6 0,54.6"/></svg></div>
+<script>
+  (function () {
+    var pt = document.getElementById('pt'), root = document.documentElement;
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (root.classList.contains('pt-arrive')) {
+      try { sessionStorage.removeItem('valzPT'); sessionStorage.setItem('valzIntro', '1'); } catch (e) {}
+      root.classList.remove('intro'); var ii = document.getElementById('intro'); if (ii) ii.remove();
+      pt.className = 'on arrive';
+      setTimeout(function () { pt.className = ''; root.classList.remove('pt-arrive'); }, 950);
+    }
+    var isOther = function (a) {
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return false;
+      var u = new URL(a.href, location.href);
+      if (u.origin !== location.origin) return false;
+      var here = location.pathname.indexOf('/persmap') === 0, there = u.pathname.indexOf('/persmap') === 0;
+      return here !== there;
+    };
+    document.addEventListener('click', function (e) {
+      if (reduce || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!isOther(a)) return;
+      e.preventDefault();
+      try { sessionStorage.setItem('valzPT', '1'); } catch (er) {}
+      pt.className = 'on out';
+      setTimeout(function () { location.href = a.href; }, 700);
+    });
+    window.addEventListener('pageshow', function (e) { if (e.persisted) pt.className = ''; });
+  })();
+</script>
 <script>
   (function () {
     try {
@@ -967,6 +1026,50 @@
     const t = document.querySelector('.reels-track'); if (!t) return;
     const measure = () => { const c = t.children, n = c.length / 2; if (c[n]) t.style.setProperty('--loop', (c[n].offsetLeft - c[0].offsetLeft) + 'px'); };
     measure(); window.addEventListener('resize', measure); window.addEventListener('load', measure);
+  })();
+
+  // reels: automatisch doorlopen, maar je kunt ook zelf swipen/scrollen/slepen
+  (() => {
+    const run = document.querySelector('.reels-run'), t = document.querySelector('.reels-track');
+    if (!run || !t) return;
+    const loopLen = () => { const c = t.children, n = c.length / 2; return c[n] ? c[n].offsetLeft - c[0].offsetLeft : 0; };
+    let L = loopLen(), pos = 0, last = performance.now(), holdUntil = 0, hovering = false, ours = false;
+    const SPEED = 34; // pixels per seconde
+    let vel = 1; // 0 = stil, 1 = volle snelheid (rustig optrekken)
+    const hold = ms => { holdUntil = Math.max(holdUntil, performance.now() + ms); };
+    const wrap = () => { if (!L) return; if (pos >= L) pos -= L; else if (pos < 0) pos += L; };
+    window.addEventListener('resize', () => { L = loopLen(); });
+    window.addEventListener('load', () => { L = loopLen(); });
+    run.addEventListener('scroll', () => {
+      if (ours) { ours = false; return; }
+      pos = run.scrollLeft; const before = pos; wrap();
+      if (pos !== before) { ours = true; run.scrollLeft = pos; }
+    }, { passive: true });
+    if (window.matchMedia('(hover: hover)').matches) {
+      run.addEventListener('mouseenter', () => { hovering = true; });
+      run.addEventListener('mouseleave', () => { hovering = false; });
+    }
+    run.addEventListener('touchstart', () => hold(1e9), { passive: true });
+    run.addEventListener('touchend', () => { holdUntil = 0; hold(500); }, { passive: true });
+    run.addEventListener('wheel', () => hold(500), { passive: true });
+    // slepen met de muis
+    let down = false, sx = 0, sl = 0, moved = false;
+    run.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button !== 0) return; down = true; moved = false; sx = e.clientX; sl = run.scrollLeft; });
+    window.addEventListener('pointermove', e => {
+      if (!down) return; const dx = e.clientX - sx;
+      if (Math.abs(dx) > 5) { moved = true; run.classList.add('dragging'); }
+      if (moved) { pos = sl - dx; wrap(); ours = true; run.scrollLeft = pos; hold(500); }
+    });
+    window.addEventListener('pointerup', () => { if (!down) return; down = false; setTimeout(() => run.classList.remove('dragging'), 0); });
+    run.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+    if (reduce) return;
+    (function tick(now) {
+      const dt = Math.min(64, now - last); last = now;
+      const go = !hovering && !down && now > holdUntil && L;
+      vel += ((go ? 1 : 0) - vel) * Math.min(1, dt / (go ? 260 : 60));
+      if (vel > 0.002 && L) { pos += SPEED * vel * dt / 1000; wrap(); ours = true; run.scrollLeft = pos; }
+      requestAnimationFrame(tick);
+    })(performance.now());
   })();
   // reels: video's alleen afspelen als ze in beeld zijn
   (() => {
