@@ -206,9 +206,9 @@
   .photo-run::before,.photo-run::after{content:"";position:absolute;top:0;bottom:0;width:12vw;z-index:1;pointer-events:none}
   .photo-run::before{left:0;background:linear-gradient(90deg,var(--k),transparent)}
   .photo-run::after{right:0;background:linear-gradient(270deg,var(--k),transparent)}
-  .photo-track{display:flex;gap:20px;width:max-content;animation:photos 80s linear infinite}
-  .photo-track img{height:clamp(200px,32vw,380px);width:auto;opacity:.6;filter:saturate(.9);flex-shrink:0}
-  @keyframes photos{to{transform:translateX(calc(-50% - 10px))}}
+  .photo-track{display:flex;width:max-content;animation:photos 80s linear infinite;will-change:transform;backface-visibility:hidden}
+  .photo-track img{height:clamp(200px,32vw,380px);width:auto;margin-right:20px;opacity:.6;filter:saturate(.9);flex-shrink:0}
+  @keyframes photos{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-1 * var(--loop, 50%)),0,0)}}
   @media (prefers-reduced-motion: reduce){.photo-track{animation:none}}
   /* persmap card */
   .press{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;background:var(--y);color:var(--k);padding:36px 40px;box-shadow:12px 12px 0 var(--p)}
@@ -415,17 +415,18 @@
   .reels{overflow:hidden}
   .reel-links{display:flex;gap:10px;flex-wrap:wrap}
   .reels-run{position:relative;padding:64px 0 70px}
-  .reels-track{display:flex;width:max-content;padding-left:40px;animation:reelScroll 45s linear infinite}
-  .reels-track:hover,.reels-track:focus-within{animation-play-state:paused}
-  @keyframes reelScroll{to{transform:translateX(-50%)}}
+  .reels-track{display:flex;width:max-content;animation:reelScroll 45s linear infinite;will-change:transform;backface-visibility:hidden;transform:translate3d(0,0,0)}
+  @media (hover:hover){.reels-track:hover,.reels-track:focus-within{animation-play-state:paused}}
+  @keyframes reelScroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-1 * var(--loop, 50%)),0,0)}}
   .reel{position:relative;flex-shrink:0;width:clamp(150px,17vw,220px);margin-right:-22px;transform:rotate(var(--r)) translateY(var(--ty));transition:transform .35s cubic-bezier(.34,1.56,.64,1);text-decoration:none;color:inherit;z-index:var(--z,1)}
-  .reel .screen{display:block;aspect-ratio:9/16;border:6px solid #111;border-radius:24px;overflow:hidden;background:#111;box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 2px #2c2c2c}
+  .reel .screen{display:block;position:relative;z-index:1;isolation:isolate;aspect-ratio:9/16;border:6px solid #111;border-radius:24px;overflow:hidden;background:#111;box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 2px #2c2c2c}
   .reel video{display:block;width:100%;height:100%;object-fit:cover}
-  .reel .views{position:absolute;top:-14px;left:30px;display:flex;align-items:center;gap:6px;background:var(--y);color:var(--k);font-family:'Anton',sans-serif;font-size:clamp(18px,2vw,24px);padding:4px 12px 4px 10px;transform:rotate(-8deg);box-shadow:3px 3px 0 var(--k);z-index:3}
+  .reel .views{position:absolute;top:-14px;left:30px;display:flex;align-items:center;gap:6px;background:var(--y);color:var(--k);font-family:'Anton',sans-serif;font-size:clamp(18px,2vw,24px);padding:4px 12px 4px 10px;transform:rotate(-8deg) translateZ(10px);box-shadow:3px 3px 0 var(--k);z-index:5}
   .reel .views svg{width:10px;height:18px;fill:var(--k)}
-  .reel .plat{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(14,14,14,.85);color:var(--p);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 10px;white-space:nowrap;opacity:0;transition:opacity .25s}
-  .reel:hover,.reel:focus-visible{transform:rotate(0) translateY(-14px) scale(1.08);z-index:10}
-  .reel:hover .plat,.reel:focus-visible .plat{opacity:1}
+  .reel .plat{position:absolute;bottom:14px;left:50%;transform:translateX(-50%) translateZ(10px);background:rgba(14,14,14,.85);color:var(--p);font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:6px 10px;white-space:nowrap;opacity:0;transition:opacity .25s;z-index:5}
+  .reel:focus-visible{transform:rotate(0) translateY(-14px) scale(1.08);z-index:10}
+  .reel:focus-visible .plat{opacity:1}
+  @media (hover:hover){.reel:hover{transform:rotate(0) translateY(-14px) scale(1.08);z-index:10}.reel:hover .plat{opacity:1}}
   .reel:focus-visible .screen{outline:3px solid var(--y);outline-offset:3px}
   @media (max-width:720px){.reel{width:44vw;margin-right:-14px}.reels-track{animation-duration:36s}.reel .plat{opacity:1}}
   @media (prefers-reduced-motion: reduce){.reels-run{overflow-x:auto}.reels-track{animation:none}.reel[aria-hidden="true"]{display:none}}
@@ -619,7 +620,7 @@
 
 <!-- FOTO-BAND -->
 <div class="photo-run" role="img" aria-label="Foto's van VALZ live op het podium, die langzaam voorbij schuiven">
-  <div class="photo-track"><img src="img/live-stro.jpg" alt="" loading="lazy"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-eijse-lach.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-milan.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/live-cowboy.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-eijse-zang.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"><img src="img/live-stro.jpg" alt="" loading="lazy"><img src="img/live-zang.jpg" alt="" loading="lazy"><img src="img/live-eijse-lach.jpg" alt="" loading="lazy"><img src="img/live-accordeon.jpg" alt="" loading="lazy"><img src="img/live-milan.jpg" alt="" loading="lazy"><img src="img/live-gitaren.jpg" alt="" loading="lazy"><img src="img/live-cowboy.jpg" alt="" loading="lazy"><img src="img/bandfoto.jpg" alt="" loading="lazy"><img src="img/live-eijse-zang.jpg" alt="" loading="lazy"><img src="img/live-bas.jpg" alt="" loading="lazy"></div>
+  <div class="photo-track"><img src="img/live-stro.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/live-zang.jpg" alt="" width="1400" height="1120" decoding="async"><img src="img/live-eijse-lach.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/live-accordeon.jpg" alt="" width="1120" height="1400" decoding="async"><img src="img/live-milan.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/live-gitaren.jpg" alt="" width="1400" height="1120" decoding="async"><img src="img/live-cowboy.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/bandfoto.jpg" alt="" width="1800" height="1380" decoding="async"><img src="img/live-eijse-zang.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/live-bas.jpg" alt="" width="1400" height="1120" decoding="async"><img src="img/live-stro.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/live-zang.jpg" alt="" width="1400" height="1120" decoding="async"><img src="img/live-eijse-lach.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/live-accordeon.jpg" alt="" width="1120" height="1400" decoding="async"><img src="img/live-milan.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/live-gitaren.jpg" alt="" width="1400" height="1120" decoding="async"><img src="img/live-cowboy.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/bandfoto.jpg" alt="" width="1800" height="1380" decoding="async"><img src="img/live-eijse-zang.jpg" alt="" width="1354" height="760" decoding="async"><img src="img/live-bas.jpg" alt="" width="1400" height="1120" decoding="async"></div>
 </div>
 
 <!-- MERCH -->
@@ -953,6 +954,20 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && m.classList.contains('open')) close(); });
   })();
 
+
+
+  // fotorij: exacte lengte van één rondje meten
+  (() => {
+    const t = document.querySelector('.photo-track'); if (!t) return;
+    const measure = () => { const c = t.children, n = c.length / 2; if (c[n]) t.style.setProperty('--loop', (c[n].offsetLeft - c[0].offsetLeft) + 'px'); };
+    measure(); window.addEventListener('resize', measure); window.addEventListener('load', measure);
+  })();
+  // reels: exacte lengte van één rondje meten, zodat de lus naadloos is
+  (() => {
+    const t = document.querySelector('.reels-track'); if (!t) return;
+    const measure = () => { const c = t.children, n = c.length / 2; if (c[n]) t.style.setProperty('--loop', (c[n].offsetLeft - c[0].offsetLeft) + 'px'); };
+    measure(); window.addEventListener('resize', measure); window.addEventListener('load', measure);
+  })();
   // reels: video's alleen afspelen als ze in beeld zijn
   (() => {
     const vids = document.querySelectorAll('.reel video');
